@@ -1,0 +1,10 @@
+{
+  "name": "web-spada",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:data": "node scripts/build-data.mjs",
+    "start": "node server.mjs"
+  }
+}
