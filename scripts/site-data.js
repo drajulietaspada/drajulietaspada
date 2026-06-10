@@ -66,12 +66,197 @@ const treatmentBeforeAfterCases = {
   "PRP (Plasma Rico en Plaquetas) capilar": ["images/caso capilar julio miranda.png"]
 };
 
+const treatmentArticleIds = {
+  "Ultherapy Prime": [
+    "article-1",
+    "article-4",
+    "article-5",
+    "article-6",
+    "article-7",
+    "article-8",
+    "article-11"
+  ],
+  "Morpheus 8": ["article-4", "article-7"],
+  Tarsopexia: ["article-2", "article-4", "article-7"],
+  "Blend de ojeras": ["article-2", "article-10"],
+  "Hueco supraorbitario": ["article-2", "article-9"],
+  Radiesse: ["article-6", "article-12"],
+  "Radiesse + NCTFHA 135": ["article-2", "article-6", "article-12"],
+  "Blend de contorno mandibular": ["article-12", "article-13"],
+  Mentón: ["article-12", "article-13"],
+  "Ácido hialurónico en labios": ["article-13"],
+  "Surco nasogeniano": ["article-13"],
+  "Surco labiomentoniano": ["article-13"],
+  "Relleno de lóbulo de oreja": ["article-13"],
+  Rinomodelación: ["article-13"],
+  "Arrugas en el tercio superior": ["article-3"],
+  "Bandas platismales": ["article-3"],
+  Maseteros: ["article-3"],
+  Traptox: ["article-3"]
+};
+
+export const articles = [
+  {
+    id: "article-1",
+    slug: "microfocused-ultrasound-regenerative-aesthetics-narrative-review",
+    title:
+      "Microfocused Ultrasound in Regenerative Aesthetics: A Narrative Review on Mechanisms of Action and Clinical Outcomes",
+    category: "PubMed",
+    excerpt: "Artículo científico disponible en PubMed.",
+    details: ["Estudio disponible en PubMed para lectura completa."],
+    externalUrl: "https://pubmed.ncbi.nlm.nih.gov/39501429/"
+  },
+  {
+    id: "article-2",
+    slug: "hyaluronic-acid-diluted-hyperdiluted-calcium-hydroxylapatite-periocular",
+    title:
+      "Hyaluronic Acid Combined with Diluted and Hyperdiluted Calcium Hydroxylapatite to Treat the Periocular Area",
+    category: "PubMed",
+    excerpt: "Artículo científico disponible en PubMed.",
+    details: ["Estudio disponible en PubMed para lectura completa."],
+    externalUrl: "https://pubmed.ncbi.nlm.nih.gov/40692693/"
+  },
+  {
+    id: "article-3",
+    slug: "incobotulinumtoxina-aesthetic-treatments-latin-america",
+    title:
+      "IncobotulinumtoxinA for Aesthetic Treatments: Review and Recommendations From Latin America",
+    category: "PubMed",
+    excerpt: "Artículo científico disponible en PubMed.",
+    details: ["Estudio disponible en PubMed para lectura completa."],
+    externalUrl: "https://pubmed.ncbi.nlm.nih.gov/39196830/"
+  },
+  {
+    id: "article-4",
+    slug: "microfocused-ultrasound-visualization-skin-quality-narrative-review",
+    title:
+      "Microfocused Ultrasound With Visualization in Skin Quality: A Narrative Review",
+    category: "PubMed",
+    excerpt: "Artículo científico disponible en PubMed.",
+    details: ["Estudio disponible en PubMed para lectura completa."],
+    externalUrl: "https://pubmed.ncbi.nlm.nih.gov/40847904/"
+  },
+  {
+    id: "article-5",
+    slug: "response-methodological-rigor-mfu-v-meta-analyses-commentary",
+    title:
+      "Response to: Enhancing Methodological Rigor in MFU-V Meta-analyses: A Commentary on Evidence Synthesis and Interpretation",
+    category: "PubMed",
+    excerpt: "Artículo científico disponible en PubMed.",
+    details: ["Estudio disponible en PubMed para lectura completa."],
+    externalUrl: "https://pubmed.ncbi.nlm.nih.gov/41061121/"
+  },
+  {
+    id: "article-6",
+    slug: "aesthetic-efficacy-safety-mfu-v-calcium-hydroxylapatite-systematic-review",
+    title:
+      "Aesthetic Efficacy and Safety of Combined Microfocused Ultrasound With Visualization and Calcium Hydroxylapatite Treatment: A Systematic Review of Human Evidence",
+    category: "PubMed",
+    excerpt: "Artículo científico disponible en PubMed.",
+    details: ["Estudio disponible en PubMed para lectura completa."],
+    externalUrl: "https://pubmed.ncbi.nlm.nih.gov/39883075/"
+  },
+  {
+    id: "article-7",
+    slug: "skin-quality-consensus-treatment-algorithm-expert-guidance",
+    title:
+      "How to Treat Skin Quality: A Consensus-Based Treatment Algorithm and Expert Guidance",
+    category: "PubMed",
+    excerpt: "Artículo científico disponible en PubMed.",
+    details: ["Estudio disponible en PubMed para lectura completa."],
+    externalUrl: "https://pubmed.ncbi.nlm.nih.gov/40847902/"
+  },
+  {
+    id: "article-8",
+    slug: "mfu-v-body-indications-abdomen-arms-global-expert-consensus",
+    title:
+      "Microfocused Ultrasound With Visualization for Body Indications: A Global Expert Consensus on Best Practices for Treatment of the Abdomen and Arms",
+    category: "PubMed",
+    excerpt: "Artículo científico disponible en PubMed.",
+    details: ["Estudio disponible en PubMed para lectura completa."],
+    externalUrl: "https://pubmed.ncbi.nlm.nih.gov/40995829/"
+  },
+  {
+    id: "article-9",
+    slug: "treating-sunken-upper-eyelid-hyaluronic-acid",
+    title:
+      "Treating Sunken Upper Eyelid With Hyaluronic Acid: Recommendations and Results",
+    category: "PubMed",
+    excerpt: "Artículo científico disponible en PubMed.",
+    details: ["Estudio disponible en PubMed para lectura completa."],
+    externalUrl: "https://pubmed.ncbi.nlm.nih.gov/36074507/"
+  },
+  {
+    id: "article-10",
+    slug: "needle-versus-cannula-tear-trough-prospective-study",
+    title:
+      "Needle versus Cannula to Treat Tear Trough: A Prospective Study Comparing both Methods",
+    category: "PubMed",
+    excerpt: "Artículo científico disponible en PubMed.",
+    details: ["Estudio disponible en PubMed para lectura completa."],
+    externalUrl: "https://pubmed.ncbi.nlm.nih.gov/37936826/"
+  },
+  {
+    id: "article-11",
+    slug: "mfu-v-effectiveness-safety-systematic-review-meta-analysis",
+    title:
+      "Microfocused Ultrasound With Visualization (MFU-V) Effectiveness and Safety: A Systematic Review and Meta-Analysis",
+    category: "PubMed",
+    excerpt: "Artículo científico disponible en PubMed.",
+    details: ["Estudio disponible en PubMed para lectura completa."],
+    externalUrl: "https://pubmed.ncbi.nlm.nih.gov/39540440/"
+  },
+  {
+    id: "article-12",
+    slug: "contouring-plus-lower-third-face-calcium-hydroxylapatite-hyaluronic-acid",
+    title:
+      "Contouring Plus: A Comprehensive Approach of the Lower Third of the Face with Calcium Hydroxylapatite and Hyaluronic Acid",
+    category: "PubMed",
+    excerpt: "Artículo científico disponible en PubMed.",
+    details: ["Estudio disponible en PubMed para lectura completa."],
+    externalUrl: "https://pubmed.ncbi.nlm.nih.gov/37041818/"
+  },
+  {
+    id: "article-13",
+    slug: "cohesive-polydensified-matrix-filler-facial-rejuvenation-latin-american-expert-group",
+    title:
+      "Recommendations for the use of Cohesive Polydensified Matrix filler technology for facial rejuvenation by the Latin American Expert Group",
+    category: "PubMed",
+    excerpt: "Artículo científico disponible en PubMed.",
+    details: ["Estudio disponible en PubMed para lectura completa."],
+    externalUrl: "https://pubmed.ncbi.nlm.nih.gov/40393087/"
+  },
+  {
+    id: "article-14",
+    slug: "vichy-mineralizing-water-hyaluronic-acid-dermatoses-esthetic-procedures",
+    title:
+      "Vichy mineralizing water with hyaluronic acid is effective and well tolerated as an adjunct to the management of various dermatoses and after esthetic procedures",
+    category: "PubMed",
+    excerpt: "Artículo científico disponible en PubMed.",
+    details: ["Estudio disponible en PubMed para lectura completa."],
+    externalUrl: "https://pubmed.ncbi.nlm.nih.gov/31793738/"
+  },
+  {
+    id: "article-15",
+    slug: "urticaria-pigmentosa-clinical-presentations-pediatric-patients",
+    title:
+      "Urticaria pigmentosa: two different clinical presentations in pediatric patients",
+    category: "PubMed",
+    excerpt: "Artículo científico disponible en PubMed.",
+    details: ["Estudio disponible en PubMed para lectura completa."],
+    externalUrl: "https://pubmed.ncbi.nlm.nih.gov/21829861/"
+  }
+];
+
 export const treatments = generatedTreatments.map((item) => ({
   ...item,
   beforeAfterCases: (treatmentBeforeAfterCases[item.title] || []).map((image, index) => ({
     image,
     alt: `Antes y después de ${item.title}. Caso ${index + 1}`
-  }))
+  })),
+  articles: (treatmentArticleIds[item.title] || [])
+    .map((id) => articles.find((article) => article.id === id))
+    .filter(Boolean)
 }));
 
 export function getHomeBeforeAfterGalleryItems() {
@@ -103,10 +288,10 @@ export function getHomeBeforeAfterGalleryItems() {
 export const siteConfig = {
   brand: {
     title: "SPADA",
-    subtitle: "Dermatologia & Estetica"
+    subtitle: "Dermatología & Estética"
   },
   contact: {
-    address: "Av. Libertador y Echeverria, 1515. CABA.",
+    address: "Av. Libertador y Echeverría, 1515. CABA.",
     email: "consultoriodraspada@gmail.com",
     bookingWhatsApp: "5491160186972",
     commercialWhatsApp: "5491135116233"
@@ -121,8 +306,8 @@ export const navigation = [
 ];
 
 export const heroContent = {
-  title: "Dermatologia y estetica con una mirada personal",
-  text: "Un espacio pensado para acompanar consultas dermatologicas y esteticas con informacion clara, seguimiento cercano y una experiencia cuidada desde el primer contacto.",
+  title: "Dermatología y estética con una mirada personal",
+  text: "Un espacio pensado para acompañar consultas dermatológicas y estéticas con información clara, seguimiento cercano y una experiencia cuidada desde el primer contacto.",
   primaryLabel: "Solicitar una consulta",
   primaryHref: "contacto.html?intent=booking",
   secondaryLabel: "Ver tratamientos",
@@ -133,37 +318,37 @@ export const showcaseItems = [
   {
     label: "Consulta personalizada",
     title: "Plan de cuidado realista",
-    text: "Cada recorrido se arma segun objetivos, tiempos y necesidades concretas."
+    text: "Cada recorrido se arma según objetivos, tiempos y necesidades concretas."
   },
   {
     label: "Seguimiento",
-    title: "Acompanamiento cercano",
-    text: "Una experiencia simple para resolver dudas y ordenar proximos pasos."
+    title: "Acompañamiento cercano",
+    text: "Una experiencia simple para resolver dudas y ordenar próximos pasos."
   },
   {
-    label: "Criterio medico",
+    label: "Criterio médico",
     title: "Indicaciones claras",
-    text: "Informacion accesible para que cada decision se tome con tranquilidad."
+    text: "Información accesible para que cada decisión se tome con tranquilidad."
   },
   {
-    label: "Estetica actual",
-    title: "Resultados armonicos",
+    label: "Estética actual",
+    title: "Resultados armónicos",
     text: "Tratamientos pensados para integrarse naturalmente a cada paciente."
   },
   {
-    label: "Tecnologia",
+    label: "Tecnología",
     title: "Recursos variados",
-    text: "La seccion de tratamientos ya queda lista para crecer con nuevo contenido."
+    text: "La sección de tratamientos ya queda lista para crecer con nuevo contenido."
   }
 ];
 
 export const doctorProfile = {
   title: "Dra. Julieta Spada",
   summary:
-    "Una presentacion clara, cercana y orientada a la consulta medica. Esta seccion ya queda preparada para sumar trayectoria, formacion y enfoques de trabajo cuando quieras completar el contenido definitivo.",
+    "Una presentación clara, cercana y orientada a la consulta médica. Esta sección ya queda preparada para sumar trayectoria, formación y enfoques de trabajo cuando quieras completar el contenido definitivo.",
   paragraphs: [
-    "La landing prioriza una navegacion simple desde el celular, pero mantiene una composicion amplia y ordenada en desktop. La idea es que cada seccion ayude a entender rapido que hace el consultorio y como contactar.",
-    "Tambien deje una base lista para crecer con tratamientos, articulos y recursos visuales sin tener que reescribir la estructura del sitio."
+    "La landing prioriza una navegación simple desde el celular, pero mantiene una composición amplia y ordenada en desktop. La idea es que cada sección ayude a entender rápido qué hace el consultorio y cómo contactar.",
+    "También dejé una base lista para crecer con tratamientos, artículos y recursos visuales sin tener que reescribir la estructura del sitio."
   ]
 };
 
@@ -233,108 +418,6 @@ export const aboutPageContent = {
     title: "Publicaciones"
   }
 };
-
-export const articles = [
-  {
-    id: "article-1",
-    slug: "eficacia-estetica-seguridad-mfuv-hidroxiapatita-calcio",
-    title: "Eficacia estética y seguridad del tratamiento combinado con ultrasonido microfocalizado con visualización e hidroxiapatita de calcio: una revisión sistemática de la evidencia en humanos",
-    category: "PubMed",
-    excerpt: "Artículo científico disponible en PubMed.",
-    details: ["Estudio disponible en PubMed para lectura completa."],
-    externalUrl: "https://pubmed.ncbi.nlm.nih.gov/39883075/"
-  },
-  {
-    id: "article-2",
-    slug: "ultrasonido-microfocalizado-estetica-regenerativa-revision-narrativa",
-    title: "Ultrasonido microfocalizado en estética regenerativa: una revisión narrativa sobre los mecanismos de acción y los resultados clínicos",
-    category: "PubMed",
-    excerpt: "Artículo científico disponible en PubMed.",
-    details: ["Estudio disponible en PubMed para lectura completa."],
-    externalUrl: "https://pubmed.ncbi.nlm.nih.gov/39501429/"
-  },
-  {
-    id: "article-3",
-    slug: "eficacia-seguridad-mfu-v-revision-sistematica-metaanalisis",
-    title: "Eficacia y seguridad del ultrasonido microfocalizado con visualización (MFU-V): una revisión sistemática y metaanálisis",
-    category: "PubMed",
-    excerpt: "Artículo científico disponible en PubMed.",
-    details: ["Estudio disponible en PubMed para lectura completa."],
-    externalUrl: "https://pubmed.ncbi.nlm.nih.gov/39540440/"
-  },
-  {
-    id: "article-4",
-    slug: "recomendaciones-matriz-cohesiva-polidensificada-rejuvenecimiento-facial",
-    title: "Recomendaciones para el uso de la tecnología de relleno de matriz cohesiva polidensificada para el rejuvenecimiento facial por el Grupo de Expertos Latinoamericanos",
-    category: "PubMed",
-    excerpt: "Artículo científico disponible en PubMed.",
-    details: ["Estudio disponible en PubMed para lectura completa."],
-    externalUrl: "https://pubmed.ncbi.nlm.nih.gov/40393087/"
-  },
-  {
-    id: "article-5",
-    slug: "mfu-v-calidad-piel-revision-narrativa",
-    title: "Ultrasonido microfocalizado con visualización en la calidad de la piel: una revisión narrativa",
-    category: "PubMed",
-    excerpt: "Artículo científico disponible en PubMed.",
-    details: ["Estudio disponible en PubMed para lectura completa."],
-    externalUrl: "https://pubmed.ncbi.nlm.nih.gov/40847904/"
-  },
-  {
-    id: "article-6",
-    slug: "incobotulinumtoxin-aa-tratamientos-esteticos-america-latina",
-    title: "IncobotulinumtoxinaA para tratamientos estéticos: revisión y recomendaciones desde América Latina",
-    category: "PubMed",
-    excerpt: "Artículo científico disponible en PubMed.",
-    details: ["Estudio disponible en PubMed para lectura completa."],
-    externalUrl: "https://pubmed.ncbi.nlm.nih.gov/39196830/"
-  },
-  {
-    id: "article-7",
-    slug: "contouring-plus-tercio-inferior-hidroxiapatita-acido-hialuronico",
-    title: "Contouring Plus: un enfoque integral del tercio inferior del rostro con hidroxiapatita de calcio y ácido hialurónico",
-    category: "PubMed",
-    excerpt: "Artículo científico disponible en PubMed.",
-    details: ["Estudio disponible en PubMed para lectura completa."],
-    externalUrl: "https://pubmed.ncbi.nlm.nih.gov/37041818/"
-  },
-  {
-    id: "article-8",
-    slug: "aguja-versus-canula-surco-lagrimal",
-    title: "Aguja versus cánula para tratar el surco lagrimal: un estudio prospectivo que compara ambos métodos",
-    category: "PubMed",
-    excerpt: "Artículo científico disponible en PubMed.",
-    details: ["Estudio disponible en PubMed para lectura completa."],
-    externalUrl: "https://pubmed.ncbi.nlm.nih.gov/37936826/"
-  },
-  {
-    id: "article-9",
-    slug: "parpado-superior-hundido-acido-hialuronico",
-    title: "Tratamiento del párpado superior hundido con ácido hialurónico: recomendaciones y resultados",
-    category: "PubMed",
-    excerpt: "Artículo científico disponible en PubMed.",
-    details: ["Estudio disponible en PubMed para lectura completa."],
-    externalUrl: "https://pubmed.ncbi.nlm.nih.gov/36074507/"
-  },
-  {
-    id: "article-10",
-    slug: "agua-mineralizante-vichy-acido-hialuronico-dermatosis-procedimientos",
-    title: "El agua mineralizante de Vichy con ácido hialurónico es eficaz y bien tolerada como coadyuvante en el manejo de diversas dermatosis y después de procedimientos estéticos",
-    category: "PubMed",
-    excerpt: "Artículo científico disponible en PubMed.",
-    details: ["Estudio disponible en PubMed para lectura completa."],
-    externalUrl: "https://pubmed.ncbi.nlm.nih.gov/31793738/"
-  },
-  {
-    id: "article-11",
-    slug: "urticaria-pigmentosa-presentaciones-clinicas-pediatricas",
-    title: "Urticaria pigmentosa: dos presentaciones clínicas diferentes en pacientes pediátricos",
-    category: "PubMed",
-    excerpt: "Artículo científico disponible en PubMed.",
-    details: ["Estudio disponible en PubMed para lectura completa."],
-    externalUrl: "https://pubmed.ncbi.nlm.nih.gov/21829861/"
-  }
-];
 
 export function getFeaturedTreatments(limit = 6) {
   return treatments.filter((item) => item.featured).slice(0, limit);
