@@ -23,6 +23,7 @@ import {
   renderButton,
   renderContactSection,
   renderDetailHero,
+  renderScientificSupport,
   renderEditorialCard,
   renderEntityCard,
   renderFooter,
@@ -76,7 +77,6 @@ function normalizeSearchValue(value = "") {
 function renderHomePage() {
   const homeBeforeAfterGalleryItems = getHomeBeforeAfterGalleryItems();
   const featuredTreatments = getFeaturedTreatments(4);
-  const featuredArticles = articles.slice(0, 3);
 
   appRoot.innerHTML = `
     <section class="hero hero--fullbleed">
@@ -92,7 +92,7 @@ function renderHomePage() {
               playsinline
               preload="auto"
               poster="${heroSecondaryImage}"
-              aria-label="Presentacion de Spada Dermatologia y Estetica"
+              aria-label="Presentación de Spada Dermatología y Estética"
             >
               <source src="${homeHeroVideo}" type="video/mp4" />
               Tu navegador no puede reproducir este video.
@@ -131,19 +131,6 @@ function renderHomePage() {
             decoding="async"
           />
         </div>
-      </div>
-    </section>
-
-    <section class="shell section">
-      <div class="section-heading" data-animate>
-        <div>
-          <p class="section-heading__eyebrow">Articulos</p>
-          <h2>Artículos de dermatología y estética de la Dra. Julieta Spada</h2>
-        </div>
-        ${renderButton("Ver más", "acerca.html#acerca", "secondary")}
-      </div>
-      <div class="editorial-grid editorial-grid--compact">
-        ${featuredArticles.map((item) => renderEditorialCard(item, "compact")).join("")}
       </div>
     </section>
 
@@ -231,7 +218,7 @@ function renderTreatmentsPage() {
 
     listingRoot.innerHTML = filtered.length
       ? filtered.map((item, index) => renderTreatmentListCard(item, index === 0)).join("")
-      : `<div class="empty-state"><h2>No encontramos coincidencias</h2><p>Prueba con otra categoría o revisa todas las opciones.</p></div>`;
+      : `<div class="empty-state"><h2>No encontramos coincidencias</h2><p>Probá con otra categoría o revisá todas las opciones.</p></div>`;
 
     setupRevealAnimations();
   };
@@ -285,10 +272,11 @@ function renderTreatmentDetailPage() {
         ${renderDetailHero(treatment, "treatment")}
       </div>
       ${renderBeforeAfterCarousel(treatment)}
+      ${renderScientificSupport(treatment.articles || [])}
       <div class="section-heading" data-animate>
         <div>
           <p class="section-heading__eyebrow">Relacionados</p>
-          <h2>Mas tratamientos para explorar</h2>
+          <h2>Más tratamientos para explorar</h2>
         </div>
       </div>
       <div class="treatment-catalog">
@@ -385,7 +373,7 @@ function renderArticleDetailPage() {
   const article = getArticleBySlug(params.get("slug") || "");
 
   if (!article) {
-    appRoot.innerHTML = renderMissingState("articulo");
+    appRoot.innerHTML = renderMissingState("artículo");
     return;
   }
 
@@ -394,14 +382,14 @@ function renderArticleDetailPage() {
   appRoot.innerHTML = `
     <section class="shell section section--detail">
       <div class="detail-header" data-animate>
-        <p class="eyebrow">Articulo</p>
+        <p class="eyebrow">Artículo</p>
         <h1>${escapeHtml(article.title)}</h1>
       </div>
       ${renderDetailHero(article, "article")}
       <div class="section-heading" data-animate>
         <div>
-          <p class="section-heading__eyebrow">Mas lectura</p>
-          <h2>Otros articulos para continuar recorriendo</h2>
+          <p class="section-heading__eyebrow">Más lectura</p>
+          <h2>Otros artículos para continuar recorriendo</h2>
         </div>
       </div>
       <div class="card-grid">
@@ -424,7 +412,7 @@ function renderMissingState(kind) {
     <section class="shell section">
       <div class="empty-state">
         <h1>No encontramos ese ${escapeHtml(kind)}</h1>
-        <p>Revisa el listado principal o vuelve al inicio para seguir navegando.</p>
+        <p>Revisá el listado principal o volvé al inicio para seguir navegando.</p>
         <div class="empty-state__actions">
           ${renderButton("Volver al inicio", "index.html")}
           ${renderButton("Ver tratamientos", "tratamientos.html", "secondary")}
