@@ -187,13 +187,13 @@ export function renderHeader(currentPage) {
               <span class="icon-chip icon-chip--static" aria-hidden="true">${icons.search}</span>
               <input class="header-search__input" type="search" name="q" placeholder="Buscar tratamientos" autocomplete="off" />
             </form>
-            <button class="icon-chip site-header__menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu" aria-label="Abrir menu">
+            <button class="icon-chip site-header__menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu" aria-label="Abrir menú">
               ${icons.menu}
             </button>
           </div>
         </div>
         <div class="mobile-menu" id="mobile-menu" data-mobile-menu hidden>
-          <nav class="mobile-menu__panel" aria-label="Menu movil">
+          <nav class="mobile-menu__panel" aria-label="Menú móvil">
             ${mobileLinks}
           </nav>
         </div>
@@ -212,11 +212,11 @@ export function renderFooter() {
       <div class="shell site-footer__inner">
         <div class="site-footer__brand">
           ${renderBrandMark(true)}
-          <p class="site-footer__copy">Tratamientos dermatologicos esteticos con enfoque medico y resultados naturales, indicados tras evaluacion.</p>
+          <p class="site-footer__copy">Tratamientos dermatológicos estéticos con enfoque médico y resultados naturales, indicados tras evaluación.</p>
         </div>
         <div class="site-footer__grid">
           <div class="site-footer__column">
-            <p class="site-footer__title">Menu</p>
+            <p class="site-footer__title">Menú</p>
             <nav class="site-footer__links" aria-label="Footer">
               ${footerLinks}
             </nav>
@@ -226,7 +226,7 @@ export function renderFooter() {
             <p class="site-footer__text">${siteConfig.contact.address}</p>
             <p class="site-footer__title site-footer__title--sub">Contacto</p>
             <div class="site-footer__contact">
-              <a href="${buildWhatsAppLink(siteConfig.contact.bookingWhatsApp, "Hola, quiero agendar una consulta.")}" target="_blank" rel="noreferrer">Whatsapp</a>
+              <a href="${buildWhatsAppLink(siteConfig.contact.bookingWhatsApp, "Hola, quiero agendar una consulta.")}" target="_blank" rel="noreferrer">WhatsApp</a>
               <span>Correo</span>
               <a href="mailto:${siteConfig.contact.email}">${siteConfig.contact.email}</a>
             </div>
@@ -241,9 +241,9 @@ export function renderFooter() {
           </div>
         </div>
         <div class="site-footer__legal">
-          <p>Politica de privacidad <span>|</span> Terminos y condiciones</p>
-          <p>&copy; 2026 SPADA Dermatologia &amp; Estetica</p>
-          <p>Los tratamientos son indicados luego de evaluacion medica personalizada.</p>
+          <p>Política de privacidad <span>|</span> Términos y condiciones</p>
+          <p>&copy; 2026 SPADA Dermatología &amp; Estética</p>
+          <p>Los tratamientos son indicados luego de evaluación médica personalizada.</p>
         </div>
       </div>
     </footer>
@@ -397,6 +397,26 @@ export function renderEditorialCard(item, variant = "default") {
   `;
 }
 
+export function renderScientificSupport(articles = []) {
+  if (!articles.length) {
+    return "";
+  }
+
+  return `
+    <section class="shell section" data-animate>
+      <div class="section-heading">
+        <div>
+          <p class="section-heading__eyebrow">Literatura científica</p>
+          <h2>Respaldo científico</h2>
+        </div>
+      </div>
+      <div class="editorial-grid editorial-grid--compact">
+        ${articles.map((article) => renderEditorialCard(article, "compact")).join("")}
+      </div>
+    </section>
+  `;
+}
+
 export function renderDetailHero(item, type = "treatment") {
   const buttonLabel = type === "article" ? "Hablar por WhatsApp" : "Agendar una consulta";
   const intent = type === "article" ? "contacto.html?intent=commercial" : `contacto.html?intent=booking&topic=${item.slug}`;
@@ -427,14 +447,14 @@ export function renderDetailHero(item, type = "treatment") {
         <div class="detail-hero__editorial-feature">
           ${media}
           <section class="detail-hero__feature-card">
-            <p class="detail-hero__feature-eyebrow">Qué es</p>
+            <p class="detail-hero__feature-eyebrow">¿Qué es?</p>
             <p class="detail-hero__feature-text">${escapeHtml(item.excerpt)}</p>
           </section>
         </div>
       `
       : `
         <section class="detail-hero__feature-card detail-hero__feature-card--standalone">
-          <p class="detail-hero__feature-eyebrow">Qué es</p>
+          <p class="detail-hero__feature-eyebrow">¿Qué es?</p>
           <p class="detail-hero__feature-text">${escapeHtml(item.excerpt)}</p>
         </section>
       `;
@@ -450,10 +470,6 @@ export function renderDetailHero(item, type = "treatment") {
           <div class="${editorialClass}">
             ${featureBlock}
             <div class="detail-hero__editorial-copy">
-              <div class="detail-hero__story-head" aria-hidden="true">
-                <p class="detail-hero__story-label">${escapeHtml(categoryLabel)}</p>
-                <span class="detail-hero__story-rule"></span>
-              </div>
             ${sections
               .map(
                 (section, index) => `
@@ -722,7 +738,7 @@ export function renderContactSection({ compact = false, withMap = false } = {}) 
             <span class="section-heading__icon">${icons.phone}</span>
             <div>
               <p class="section-heading__eyebrow">Contacto</p>
-              <h2>Conversemos por el canal que te resulte mas comodo</h2>
+              <h2>Conversemos por el canal que te resulte más cómodo</h2>
             </div>
           </div>
           <div class="contact-card__info">
@@ -731,7 +747,7 @@ export function renderContactSection({ compact = false, withMap = false } = {}) 
           </div>
           <div class="contact-card__actions">
             <a class="button" href="${buildWhatsAppLink(siteConfig.contact.bookingWhatsApp, "Hola, quiero agendar una consulta.")}" target="_blank" rel="noreferrer">Agendar una consulta</a>
-            <a class="button button--secondary" href="${buildWhatsAppLink(siteConfig.contact.commercialWhatsApp, "Hola, quiero recibir asesoramiento comercial.")}" target="_blank" rel="noreferrer">Asesoria comercial</a>
+            <a class="button button--secondary" href="${buildWhatsAppLink(siteConfig.contact.commercialWhatsApp, "Hola, quiero recibir asesoramiento comercial.")}" target="_blank" rel="noreferrer">Asesoría comercial</a>
           </div>
         </div>
         <form class="contact-form" data-contact-form data-animate>
@@ -744,11 +760,11 @@ export function renderContactSection({ compact = false, withMap = false } = {}) 
           <div class="form-grid">
             <label class="field">
               <span>Nombre y apellido</span>
-              <input type="text" name="name" placeholder="Escribe tu nombre y apellido" required />
+              <input type="text" name="name" placeholder="Escribí tu nombre y apellido" required />
             </label>
             <label class="field">
               <span>Documento / DNI / Pasaporte</span>
-              <input type="text" name="document" placeholder="Escribe tu documento" required />
+              <input type="text" name="document" placeholder="Escribí tu documento" required />
             </label>
           </div>
           <fieldset class="field-group">
@@ -759,7 +775,7 @@ export function renderContactSection({ compact = false, withMap = false } = {}) 
             </label>
             <label class="choice-pill">
               <input type="radio" name="intent" value="commercial" />
-              <span>Asesoria comercial</span>
+              <span>Asesoría comercial</span>
             </label>
           </fieldset>
           <fieldset class="field-group" data-modality-group>
@@ -775,11 +791,11 @@ export function renderContactSection({ compact = false, withMap = false } = {}) 
           </fieldset>
           <label class="field">
             <span>Disponibilidad</span>
-            <textarea name="availability" rows="3" placeholder="Escribe dias y horarios de preferencia." required></textarea>
+            <textarea name="availability" rows="3" placeholder="Escribí días y horarios de preferencia." required></textarea>
           </label>
           <label class="field">
             <span>Consulta</span>
-            <textarea name="message" rows="4" placeholder="Escribe tu consulta." required></textarea>
+            <textarea name="message" rows="4" placeholder="Escribí tu consulta." required></textarea>
           </label>
           <input type="hidden" name="topic" />
           <button class="button contact-form__submit" type="submit">Enviar por WhatsApp</button>
@@ -799,7 +815,7 @@ export function renderContactSection({ compact = false, withMap = false } = {}) 
           <p><span>${icons.pin}</span><strong>Dirección:</strong></p>
           <p class="contact-card__detail">${escapeHtml(siteConfig.contact.address)}</p>
           <p><span>${icons.phone}</span><strong>Escribinos por WhatsApp</strong></p>
-          <a class="button contact-card__button" href="${buildWhatsAppLink(siteConfig.contact.bookingWhatsApp, "Hola, quiero agendar una consulta.")}" target="_blank" rel="noreferrer">Whatsapp</a>
+          <a class="button contact-card__button" href="${buildWhatsAppLink(siteConfig.contact.bookingWhatsApp, "Hola, quiero agendar una consulta.")}" target="_blank" rel="noreferrer">WhatsApp</a>
           <p><span>${icons.mail}</span><strong>E-mail:</strong></p>
           <p class="contact-card__detail"><a href="mailto:${siteConfig.contact.email}">${siteConfig.contact.email}</a></p>
         </div>
@@ -810,16 +826,16 @@ export function renderContactSection({ compact = false, withMap = false } = {}) 
           <p class="contact-form__title">Tus datos para contactarte</p>
           <label class="field field--survey">
             <span>Nombre y Apellido</span>
-            <input type="text" name="name" placeholder="Escribe tu nombre y apellido" required />
+            <input type="text" name="name" placeholder="Escribí tu nombre y apellido" required />
           </label>
           <label class="field field--survey">
-            <span>Whatsapp o medio de contacto</span>
-            <input type="text" name="contact" placeholder="Escribe tu número de contacto" required />
+            <span>WhatsApp o medio de contacto</span>
+            <input type="text" name="contact" placeholder="Escribí tu número de contacto" required />
           </label>
           ${renderConcernSelect()}
           <label class="field field--survey" data-concern-other hidden>
             <span>Contanos qué te gustaría consultar.</span>
-            <textarea name="concern_other" rows="4" placeholder="Escribe tu consulta"></textarea>
+            <textarea name="concern_other" rows="4" placeholder="Escribí tu consulta"></textarea>
           </label>
           <fieldset class="field-group field-group--survey">
             <legend>Día de preferencia (elegí una o más opciones)</legend>
@@ -1049,7 +1065,7 @@ export function bindContactForms() {
       }
 
       const lines = [
-        "Hola, me gustaria recibir informacion desde la web del consultorio.",
+        "Hola, me gustaría recibir información desde la web del consultorio.",
         "",
         `Nombre: ${name}`,
         contact ? `Contacto: ${contact}` : "",
