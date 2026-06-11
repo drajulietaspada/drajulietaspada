@@ -9,7 +9,6 @@ import {
   getRelatedTreatments,
   getTreatmentBySlug,
   getTreatmentCategories,
-  googleReviews,
   heroContent,
   showcaseItems,
   treatments
@@ -30,8 +29,6 @@ import {
   renderFooter,
   renderHeader,
   renderHomeBeforeAfterCarousel,
-  renderReviewsCarousel,
-  bindReviewsCarousels,
   renderShowcaseCard,
   renderTreatmentListCard,
   setupRevealAnimations
@@ -44,6 +41,41 @@ const heroSecondaryImage = "images/secundaria.png";
 const treatmentsPageHeroImageMobile = "images/JAB02417-2.png";
 const treatmentsPageHeroImageDesktop = "images/JAB02417.png";
 const aboutSectionHref = "acerca.html#acerca";
+
+const embedSocialGoogleReviewsRef = "6949fa6dd9c41257bd3802181f031a9ce2e5abaf";
+
+function renderGoogleReviewsWidget() {
+  return `
+    <section class="shell section google-reviews-section" data-animate>
+      <div class="embedsocial-hashtag" data-ref="${embedSocialGoogleReviewsRef}">
+        <a
+          class="feed-powered-by-es feed-powered-by-es-feed-img es-widget-branding"
+          href="https://embedsocial.com/google-reviews-widget/"
+          target="_blank"
+          rel="noreferrer"
+          title="Embed Google reviews"
+        >
+          <img src="https://embedsocial.com/cdn/icon/embedsocial-logo.webp" alt="EmbedSocial" />
+          <div class="es-widget-branding-text">Embed Google reviews</div>
+        </a>
+      </div>
+    </section>
+  `;
+}
+
+function loadEmbedSocialWidget() {
+  const scriptId = "EmbedSocialHashtagScript";
+
+  if (document.getElementById(scriptId)) {
+    return;
+  }
+
+  const script = document.createElement("script");
+  script.id = scriptId;
+  script.src = "https://embedsocial.com/cdn/ht.js";
+  script.async = true;
+  document.head.appendChild(script);
+}
 
 const page = document.body.dataset.page;
 const headerRoot = document.getElementById("site-header");
@@ -65,7 +97,6 @@ const renderers = {
 
 (renderers[page] || renderHomePage)();
 bindHomeBeforeAfterCarousels();
-bindReviewsCarousels();
 bindTreatmentCaseCarousels();
 bindContactForms();
 setupRevealAnimations();
@@ -140,7 +171,7 @@ function renderHomePage() {
       </div>
     </section>
 
-    ${renderReviewsCarousel(googleReviews)}
+    ${renderGoogleReviewsWidget()}
 
     <section class="shell section">
       ${renderContactSection({ withMap: true })}
@@ -162,6 +193,8 @@ function renderHomePage() {
       heroVideoElement.addEventListener("loadeddata", playHeroVideo, { once: true });
     }
   }
+
+  loadEmbedSocialWidget();
 }
 
 function renderTreatmentsPage() {
