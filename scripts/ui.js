@@ -397,6 +397,109 @@ export function renderEditorialCard(item, variant = "default") {
   `;
 }
 
+export function renderReviewsCarousel(reviews = []) {
+  if (!reviews.length) {
+    return "";
+  }
+
+  const slides = reviews
+    .map((review) => {
+      const stars = "★".repeat(Math.max(0, Math.min(5, review.rating || 5)));
+      const initial = (review.author || "?").trim().charAt(0).toUpperCase();
+      return `
+        <div class="reviews-carousel__slide">
+          <article class="review-card">
+            <span class="review-card__stars" aria-label="${review.rating || 5} de 5 estrellas">${stars}</span>
+            <p class="review-card__text">${escapeHtml(review.text)}</p>
+            <div class="review-card__footer">
+              <span class="review-card__avatar" aria-hidden="true">${escapeHtml(initial)}</span>
+              <div class="review-card__author">
+                <p class="review-card__name">${escapeHtml(review.author)}</p>
+                <p class="review-card__source">Reseña de Google</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      `;
+    })
+    .join("");
+
+  return `
+    <section class="shell section" data-animate>
+      <div class="section-heading">
+        <div>
+          <p class="section-heading__eyebrow">Reseñas</p>
+          <h2>Lo que dicen nuestros pacientes</h2>
+        </div>
+      </div>
+      <div class="reviews-carousel" data-reviews-carousel>
+        <button class="reviews-carousel__button reviews-carousel__button--prev" type="button" data-reviews-prev aria-label="Reseña anterior">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 6-6 6 6 6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"/></svg>
+        </button>
+        <div class="reviews-carousel__viewport" data-reviews-viewport>
+          <div class="reviews-carousel__track" data-reviews-track>
+            ${slides}
+          </div>
+        </div>
+        <button class="reviews-carousel__button reviews-carousel__button--next" type="button" data-reviews-next aria-label="Reseña siguiente">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"/></svg>
+        </button>
+      </div>
+    </section>
+  `;
+}
+
+export function bindReviewsCarousels() {
+  const carousels = document.querySelectorAll("[data-reviews-carousel]");
+
+  carousels.forEach((carousel) => {
+    const track = carousel.querySelector("[data-reviews-track]");
+    const slides = Array.from(carousel.querySelectorAll(".reviews-carousel__slide"));
+    const prevButton = carousel.querySelector("[data-reviews-prev]");
+    const nextButton = carousel.querySelector("[data-reviews-next]");
+
+    if (!track || !slides.length) {
+      return;
+    }
+
+    let index = 0;
+
+    const getColumns = () => {
+      const styles = getComputedStyle(carousel);
+      return parseInt(styles.getPropertyValue("--reviews-columns"), 10) || 1;
+    };
+
+    const update = () => {
+      const columns = getColumns();
+      const maxIndex = Math.max(0, slides.length - columns);
+      index = Math.min(index, maxIndex);
+
+      const slideWidth = slides[0].getBoundingClientRect().width;
+      const gap = parseFloat(getComputedStyle(track).gap) || 0;
+      const offset = index * (slideWidth + gap);
+      track.style.transform = `translateX(-${offset}px)`;
+
+      if (prevButton) prevButton.hidden = index <= 0;
+      if (nextButton) nextButton.hidden = index >= maxIndex;
+    };
+
+    prevButton?.addEventListener("click", () => {
+      index = Math.max(0, index - 1);
+      update();
+    });
+
+    nextButton?.addEventListener("click", () => {
+      const columns = getColumns();
+      const maxIndex = Math.max(0, slides.length - columns);
+      index = Math.min(maxIndex, index + 1);
+      update();
+    });
+
+    window.addEventListener("resize", update);
+    update();
+  });
+}
+
 export function renderScientificSupport(articles = []) {
   if (!articles.length) {
     return "";
