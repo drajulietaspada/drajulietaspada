@@ -1,8 +1,6 @@
 import { treatments as generatedTreatments } from "./generated-treatments.js";
 
-const treatmentBeforeAfterCases = {
-  "Morpheus 8": ["images/caso morpheus diehl.png"]
-};
+const treatmentBeforeAfterCases = {};
 
 const treatmentArticleIds = {
   "Ultherapy Prime": [
