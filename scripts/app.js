@@ -9,6 +9,7 @@ import {
   getRelatedTreatments,
   getTreatmentBySlug,
   getTreatmentCategories,
+  googleReviews,
   heroContent,
   showcaseItems,
   treatments
@@ -29,6 +30,8 @@ import {
   renderFooter,
   renderHeader,
   renderHomeBeforeAfterCarousel,
+  renderReviewsCarousel,
+  bindReviewsCarousels,
   renderShowcaseCard,
   renderTreatmentListCard,
   setupRevealAnimations
@@ -62,6 +65,7 @@ const renderers = {
 
 (renderers[page] || renderHomePage)();
 bindHomeBeforeAfterCarousels();
+bindReviewsCarousels();
 bindTreatmentCaseCarousels();
 bindContactForms();
 setupRevealAnimations();
@@ -111,10 +115,12 @@ function renderHomePage() {
           <h2>Tratamientos dermatológicos y estéticos</h2>
           <p class="section-heading__description">Conocé una selección de tratamientos faciales y corporales indicados según evaluación médica, anatomía y objetivos de cada paciente.</p>
         </div>
-        ${renderButton("Ver más", "tratamientos.html", "secondary")}
       </div>
       <div class="treatment-catalog">
         ${featuredTreatments.map((item, index) => renderTreatmentListCard(item, index === 0)).join("")}
+      </div>
+      <div class="home-treatments-cta" data-animate>
+        ${renderButton("Conocé más tratamientos", "tratamientos.html", "secondary")}
       </div>
     </section>
 
@@ -133,6 +139,8 @@ function renderHomePage() {
         </div>
       </div>
     </section>
+
+    ${renderReviewsCarousel(googleReviews)}
 
     <section class="shell section">
       ${renderContactSection({ withMap: true })}
