@@ -1,0 +1,200 @@
+
+/* ─── Ajustes: carruseles de casos más grandes + botón home + reseñas ─────── */
+
+/* Home: carrusel de casos antes/después más grande */
+.home-before-after__carousel {
+  --home-before-after-columns: 1;
+}
+
+.home-before-after__card {
+  aspect-ratio: 3 / 4;
+}
+
+@media (min-width: 720px) {
+  .home-before-after__carousel {
+    --home-before-after-columns: 2;
+  }
+}
+
+@media (min-width: 1080px) {
+  .home-before-after__carousel {
+    --home-before-after-columns: 3;
+  }
+}
+
+/* Carrusel de casos dentro de cada tratamiento más grande */
+.before-after-carousel__stage {
+  min-height: clamp(28rem, 110vw, 44rem);
+}
+
+@media (max-width: 719px) {
+  .before-after-carousel__stage {
+    min-height: clamp(26rem, 125vw, 38rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  .before-after-carousel__stage {
+    min-height: clamp(34rem, 56vw, 48rem);
+  }
+}
+
+.before-after-block {
+  width: min(100%, 82rem);
+}
+
+/* Botón "Conocé más tratamientos" del home: ancho y centrado */
+.home-treatments-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.6rem;
+}
+
+.home-treatments-cta .button {
+  width: min(100%, 22rem);
+  min-height: 3.2rem;
+  padding-inline: 2rem;
+  font-size: clamp(1rem, 1.2vw, 1.12rem);
+}
+
+/* ─── Reseñas de Google (carrusel) ──────────────────────────────────────── */
+.reviews-carousel {
+  --reviews-gap: clamp(0.8rem, 1.5vw, 1.15rem);
+  --reviews-columns: 1;
+  position: relative;
+  padding-inline: clamp(3rem, 5vw, 4.8rem);
+}
+
+.reviews-carousel__viewport {
+  overflow: hidden;
+}
+
+.reviews-carousel__track {
+  display: flex;
+  gap: var(--reviews-gap);
+  will-change: transform;
+}
+
+.reviews-carousel__slide {
+  flex: 0 0 calc((100% - ((var(--reviews-columns) - 1) * var(--reviews-gap))) / var(--reviews-columns));
+  min-width: 0;
+}
+
+.review-card {
+  display: grid;
+  align-content: start;
+  gap: 0.85rem;
+  height: 100%;
+  padding: 1.5rem 1.4rem;
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: var(--shadow-card);
+}
+
+.review-card__stars {
+  display: inline-flex;
+  gap: 0.15rem;
+  color: var(--accent);
+  font-size: 1.05rem;
+  letter-spacing: 0.1em;
+}
+
+.review-card__text {
+  margin: 0;
+  font-size: 0.96rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.review-card__footer {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+
+.review-card__avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: rgba(var(--accent-rgb), 0.18);
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.review-card__author {
+  display: grid;
+  gap: 0.1rem;
+}
+
+.review-card__name {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.review-card__source {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+}
+
+.reviews-carousel__button {
+  position: absolute;
+  top: 50%;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border: 1px solid rgba(17, 17, 17, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--ink);
+  box-shadow: var(--shadow-soft);
+  transform: translateY(-50%);
+  transition: transform 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+}
+
+.reviews-carousel__button:hover,
+.reviews-carousel__button:focus-visible {
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 10px 24px rgba(17, 17, 17, 0.12);
+}
+
+.reviews-carousel__button--prev {
+  left: 0;
+}
+
+.reviews-carousel__button--next {
+  right: 0;
+}
+
+.reviews-carousel__button svg {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.reviews-carousel__button[hidden] {
+  display: none;
+}
+
+@media (min-width: 720px) {
+  .reviews-carousel {
+    --reviews-columns: 2;
+  }
+}
+
+@media (min-width: 1080px) {
+  .reviews-carousel {
+    --reviews-columns: 3;
+  }
+}
