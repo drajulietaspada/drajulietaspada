@@ -1,69 +1,7 @@
 import { treatments as generatedTreatments } from "./generated-treatments.js";
 
 const treatmentBeforeAfterCases = {
-  "Ultherapy Prime": [
-    "images/caso Morpheus 8 Ultherapy Prime.png",
-    "images/caso Ultherapy Prime (2).png",
-    "images/caso Ultherapy Prime blend de ojeras.png",
-    "images/caso Ultherapy Prime.png"
-  ],
-  "Morpheus 8": [
-    "images/caso aft morpheus up.png",
-    "images/caso Blend de radiesse con meso y morpheus 8.png",
-    "images/caso morpheus 8 (2).png",
-    "images/caso Morpheus 8 Ultherapy Prime.png",
-    "images/caso morpheus 8.png",
-    "images/caso morpheus altube sonia.png",
-    "images/caso morpheus diehl.png",
-    "images/caso Tarsopexia morpheus 8.png"
-  ],
-  "Harmony AFT 540–950": [
-    "images/caso aft salto.png",
-    "images/caso aft morpheus up.png",
-    "images/caso HARMONY AFT.png"
-  ],
-  "Arrugas en el tercio superior": ["images/caso tercio superior.png"],
-  "Bandas platismales": ["images/caso bandas.png"],
-  Maseteros: ["images/caso maseteros.png"],
-  Traptox: [
-    "images/caso traptox bevilaquia.png",
-    "images/caso traptox bevilaquia(1).png"
-  ],
-  Tarsopexia: [
-    "images/caso Tarsopexia morpheus 8 (2).png",
-    "images/caso Tarsopexia.png"
-  ],
-  Radiesse: ["images/caso Radiesse.png"],
-  "Radiesse + NCTFHA 135": [
-    "images/caso Blend de radiesse con meso y morpheus 8.png",
-    "images/caso radiesse + meso.png"
-  ],
-  Mentón: ["images/caso menton.png"],
-  "Ácido hialurónico en labios": [
-    "images/caso Labios (2).png",
-    "images/caso Labios.png"
-  ],
-  Rinomodelación: [
-    "images/caso rino (2).png",
-    "images/caso rino px angel.png",
-    "images/caso rino.png"
-  ],
-  "Blend de ojeras": [
-    "images/caso ojeras mariana.png",
-    "images/caso Ojeras.png"
-  ],
-  "Blend de contorno mandibular": ["images/caso Contorno mandibular.png"],
-  "Hueco supraorbitario": [
-    "images/caso hueco supra.png",
-    "images/caso Hueco supraorbitario.png"
-  ],
-  "Surco nasogeniano": ["images/caso surco nasogeniano.png"],
-  "Surco labiomentoniano": ["images/caso surco labiomentoniano drzeuko.png"],
-  "Relleno de lóbulo de oreja": [
-    "images/caso oreja brillantino 2 .png",
-    "images/caso orejas brillantino.png"
-  ],
-  "PRP (Plasma Rico en Plaquetas) capilar": ["images/caso capilar julio miranda.png"]
+  "Morpheus 8": ["images/caso morpheus diehl.png"]
 };
 
 const treatmentArticleIds = {
@@ -284,6 +222,16 @@ export function getHomeBeforeAfterGalleryItems() {
 
   return Array.from(itemsByImage.values());
 }
+
+export const googleReviews = [
+  // Reemplazá estos ejemplos con las reseñas reales de 5 estrellas de Google.
+  // Formato: { author: "Nombre", rating: 5, text: "Texto de la reseña" }
+  {
+    author: "Paciente",
+    rating: 5,
+    text: "Excelente atención y profesionalismo. Resultados naturales y un trato humano que hace la diferencia."
+  }
+];
 
 export const siteConfig = {
   brand: {
