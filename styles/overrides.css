@@ -43,16 +43,19 @@
   width: min(100%, 82rem);
 }
 
-/* Botón "Conocé más tratamientos" del home: ancho y centrado */
+/* Botón "Conocé más tratamientos" del home: centrado y con aire */
 .home-treatments-cta {
+  width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 1.6rem;
+  align-items: center;
+  margin: clamp(2.4rem, 4vw, 3.5rem) auto clamp(3rem, 5vw, 4.5rem);
 }
 
 .home-treatments-cta .button {
   width: min(100%, 22rem);
   min-height: 3.2rem;
+  margin-inline: auto;
   padding-inline: 2rem;
   font-size: clamp(1rem, 1.2vw, 1.12rem);
 }
