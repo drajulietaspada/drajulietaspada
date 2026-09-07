@@ -16,6 +16,27 @@
     />
     <link rel="icon" type="image/png" href="images/image.png" />
     <link rel="stylesheet" href="styles/main.css" />
+    <style>
+      .home-treatments-cta {
+        display: flex;
+        grid-column: 1 / -1;
+        width: 100%;
+        margin-top: clamp(1rem, 2vw, 1.5rem);
+        align-items: center;
+        justify-content: center;
+      }
+
+      .home-treatments-cta .button {
+        margin: 0;
+      }
+
+      @media (max-width: 719px) {
+        .home-treatments-cta .button {
+          width: 100%;
+          min-width: 0;
+        }
+      }
+    </style>
   </head>
   <body data-page="home">
     <div id="site-header"></div>
