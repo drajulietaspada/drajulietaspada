@@ -11,13 +11,107 @@
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-   <link rel="icon" type="image/png" href="images/image.png" />
+    <link rel="icon" type="image/png" href="images/image.png" />
     <link rel="stylesheet" href="styles/main.css" />
   </head>
   <body data-page="acerca">
     <div id="site-header"></div>
     <main id="app"></main>
     <div id="site-footer"></div>
-    <script type="module" src="scripts/app.js"></script>
+    <script type="module">
+      import { aboutPageContent } from "./scripts/site-data.js";
+
+      aboutPageContent.sections = [
+        {
+          title: "Trayectoria",
+          intro: "Trayectoria de la Dra. Julieta Spada",
+          paragraphs: [
+            "La Dra. Julieta Spada es médica especialista en Dermatología, Medicina Interna y Medicina Estética, con una trayectoria enfocada en la dermatología clínica, estética y quirúrgica. Egresada de la Universidad de Buenos Aires (UBA), su formación integra conocimiento clínico, anatomía aplicada y técnicas avanzadas en medicina estética, con un enfoque médico, riguroso y personalizado.",
+            "A lo largo de su carrera ha combinado la práctica asistencial con la docencia, la investigación y la participación activa en espacios científicos nacionales e internacionales.",
+            "Fue Profesora Adjunta de la Universidad de Buenos Aires y docente de Anatomía Aplicada, participando en la formación médica en técnicas de aplicación de toxina botulínica y fillers mediante prácticas anatómicas en cadáveres.",
+            "Actualmente es Top Global Speaker de Merz Aesthetics, forma parte del cuerpo docente de UMA Institute, en Ámsterdam, y participa de manera continua como docente y disertante en cursos, congresos y espacios de actualización científica en Argentina, Latinoamérica, Europa, Norteamérica y Asia.",
+            "Ha sido speaker en encuentros internacionales de referencia como AMWC Mónaco, IMCAS París, MCS Miami, MEXS LATAM y BAAS, entre otros.",
+            "Además, integra espacios académicos y científicos internacionales como Scientific Review Board, Associated Faculty y el Comité Científico Internacional de AMWC Sudeste Asiático.",
+            "Como Directora Médica de su clínica y de Spada Beauty Lab, lidera un enfoque de la dermatología estética basado en ciencia, precisión, diagnóstico individualizado y resultados naturales."
+          ]
+        },
+        {
+          title: "Formación",
+          intro: "Formación médica y especializaciones",
+          items: [
+            {
+              label: "Médica",
+              text: "Universidad de Buenos Aires (UBA), 2004."
+            },
+            {
+              label: "Especialista en Dermatología",
+              text: "Universidad de Buenos Aires (UBA) y Sociedad Argentina de Dermatología."
+            },
+            {
+              label: "Especialista en Medicina Interna",
+              text: "Universidad de Buenos Aires (UBA)."
+            },
+            {
+              label: "Especialista en Medicina Estética",
+              text: "Asociación Médica Argentina (AMA)."
+            }
+          ]
+        },
+        {
+          title: "Docencia",
+          intro: "Docencia y actividad académica",
+          items: [
+            {
+              label: "Ex Profesora Adjunta de la Universidad de Buenos Aires (UBA)",
+              text: "Actividad docente universitaria en el área de Dermatología."
+            },
+            {
+              label: "Ex Profesora de Anatomía Aplicada",
+              text: "Formación médica en anatomía aplicada a técnicas de toxina botulínica y fillers, con prácticas en cadáveres en la UBA."
+            },
+            {
+              label: "Docente de UMA Institute, Ámsterdam",
+              text: ""
+            },
+            {
+              label: "Top Global Speaker de Merz Aesthetics",
+              text: ""
+            },
+            {
+              label: "Docencia internacional continua",
+              text: "Participación como speaker y docente en cursos, congresos y actividades de actualización científica en Argentina, Latinoamérica, Europa, Norteamérica y Asia."
+            }
+          ]
+        },
+        {
+          title: "Participación científica",
+          intro: "Participación científica internacional",
+          items: [
+            {
+              label: "Comité Científico Internacional de AMWC Sudeste Asiático",
+              text: ""
+            },
+            {
+              label: "Scientific Review Board",
+              text: ""
+            },
+            {
+              label: "Associated Faculty",
+              text: ""
+            }
+          ]
+        },
+        {
+          title: "Congresos",
+          intro: "Congresos internacionales",
+          paragraphs: [
+            "Ha participado como disertante en algunos de los principales encuentros de medicina estética y dermatología a nivel internacional, entre ellos:",
+            "AMWC Mónaco · IMCAS París · MCS Miami · MEXS LATAM · BAAS"
+          ]
+        }
+      ];
+
+      await import("./scripts/app.js");
+    </script>
   </body>
 </html>
