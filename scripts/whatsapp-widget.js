@@ -5,12 +5,6 @@ const buildWhatsAppUrl = (message) => {
   return `https://wa.me/${WHATSAPP_NUMBER}?${params.toString()}`;
 };
 
-const whatsappIcon = `
-  <svg viewBox="0 0 32 32" aria-hidden="true">
-    <path fill="currentColor" d="M16 3.2A12.6 12.6 0 0 0 5.3 22.5L3.8 28.8l6.5-1.5A12.7 12.7 0 1 0 16 3.2Zm0 2.3a10.3 10.3 0 1 1-5.2 19.2l-.7-.4-3.4.8.8-3.3-.4-.7A10.3 10.3 0 0 1 16 5.5Zm-5 5.2c-.3 0-.7.1-.9.5-.3.4-1.1 1.1-1.1 2.7s1.1 3.1 1.3 3.3c.2.2 2.2 3.5 5.5 4.7 2.7 1.1 3.3.9 3.9.8.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.3.2-1.5-.1-.2-.4-.3-.8-.5l-2.4-1.1c-.3-.1-.6-.2-.9.2-.3.4-1 1.2-1.2 1.4-.2.3-.5.3-.9.1-.4-.2-1.7-.6-3.2-2-1.2-1.1-2-2.4-2.2-2.8-.2-.4 0-.6.2-.8l.6-.7c.2-.2.3-.4.4-.7.1-.2 0-.5-.1-.7l-1.1-2.6c-.3-.6-.6-.6-.9-.6H11Z"/>
-  </svg>
-`;
-
 const closeIcon = `
   <svg viewBox="0 0 24 24" aria-hidden="true">
     <path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
@@ -30,16 +24,8 @@ const calendarIcon = `
   </svg>
 `;
 
-const messageIcon = `
-  <svg viewBox="0 0 24 24" aria-hidden="true">
-    <path d="M5 18.5 3.8 21l3.1-1A8.3 8.3 0 1 0 5 18.5Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-    <path d="M8.5 12h.01M12 12h.01M15.5 12h.01" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/>
-  </svg>
-`;
-
 const styles = `
   .spada-whatsapp {
-    --wa-green: #20b85a;
     position: fixed;
     right: clamp(1rem, 2vw, 1.75rem);
     bottom: clamp(1rem, 2vw, 1.75rem);
@@ -52,10 +38,11 @@ const styles = `
     height: 64px;
     display: grid;
     place-items: center;
+    padding: 0;
+    overflow: hidden;
     border: 0;
     border-radius: 50%;
-    background: var(--wa-green);
-    color: #fff;
+    background: #25d366;
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
     cursor: pointer;
     transition: transform 180ms ease, box-shadow 180ms ease;
@@ -66,6 +53,14 @@ const styles = `
     box-shadow: 0 16px 34px rgba(0, 0, 0, 0.22);
   }
 
+  .spada-whatsapp__launcher-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+  }
+
   .spada-whatsapp__launcher:focus-visible,
   .spada-whatsapp__close:focus-visible,
   .spada-whatsapp__option:focus-visible,
@@ -73,11 +68,6 @@ const styles = `
   .spada-whatsapp__input:focus-visible {
     outline: 2px solid var(--accent, #cc9110);
     outline-offset: 3px;
-  }
-
-  .spada-whatsapp__launcher svg {
-    width: 36px;
-    height: 36px;
   }
 
   .spada-whatsapp__panel {
@@ -293,11 +283,6 @@ const styles = `
       height: 58px;
     }
 
-    .spada-whatsapp__launcher svg {
-      width: 33px;
-      height: 33px;
-    }
-
     .spada-whatsapp__panel {
       right: 0;
       bottom: 70px;
@@ -355,22 +340,12 @@ function mountWhatsAppWidget() {
         <div class="spada-whatsapp__options">
           <a
             class="spada-whatsapp__option"
-            href="${buildWhatsAppUrl("Hola, quiero agendar una consulta.")}"
+            href="${buildWhatsAppUrl("Quiero agendar una consulta")}"
             target="_blank"
             rel="noreferrer"
           >
             <span class="spada-whatsapp__option-icon">${calendarIcon}</span>
             <span>Quiero agendar una consulta</span>
-            <span class="spada-whatsapp__option-arrow">${arrowIcon}</span>
-          </a>
-          <a
-            class="spada-whatsapp__option"
-            href="${buildWhatsAppUrl("Hola, tengo otra consulta.")}"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <span class="spada-whatsapp__option-icon">${messageIcon}</span>
-            <span>Otras consultas</span>
             <span class="spada-whatsapp__option-arrow">${arrowIcon}</span>
           </a>
         </div>
@@ -398,7 +373,12 @@ function mountWhatsAppWidget() {
       aria-label="Abrir chat de WhatsApp"
       aria-expanded="false"
     >
-      ${whatsappIcon}
+      <img
+        class="spada-whatsapp__launcher-image"
+        src="images/whatsapp%20icon.png"
+        alt=""
+        aria-hidden="true"
+      />
     </button>
   `;
 
