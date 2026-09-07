@@ -42,7 +42,7 @@ const styles = `
     overflow: hidden;
     border: 0;
     border-radius: 50%;
-    background: #25d366;
+    background: #00bd3d;
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
     cursor: pointer;
     transition: transform 180ms ease, box-shadow 180ms ease;
@@ -58,6 +58,7 @@ const styles = `
     width: 100%;
     height: 100%;
     object-fit: contain;
+    border: 0;
     border-radius: 50%;
   }
 
