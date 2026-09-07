@@ -1,0 +1,67 @@
+/* Shared contact layout: home and Contact page */
+.contact-block--with-map.contact-block--survey-layout {
+  align-items: start;
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.contact-block--with-map.contact-block--survey-layout > .contact-form--survey {
+  align-self: start;
+  height: auto;
+}
+
+.contact-block--with-map .contact-form__panel {
+  width: 100%;
+  height: auto;
+  align-content: start;
+  gap: clamp(1rem, 1.4vw, 1.25rem);
+  padding: clamp(1.25rem, 2vw, 1.75rem);
+}
+
+.contact-form--survey .contact-form__title {
+  margin: 0 0 0.15rem;
+}
+
+.contact-form--survey .field--survey {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0;
+}
+
+.contact-form--survey .field-group--survey {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.contact-form--survey .survey-check-grid {
+  row-gap: 0.55rem;
+  column-gap: clamp(0.85rem, 2vw, 1.4rem);
+}
+
+.contact-form--survey .contact-form__note--survey {
+  margin: 0;
+  line-height: 1.5;
+}
+
+@media (max-width: 719px) {
+  .contact-block--with-map.contact-block--survey-layout {
+    gap: 1rem;
+  }
+
+  .contact-block--with-map .contact-form__panel {
+    gap: 1rem;
+    padding: 1.2rem;
+  }
+
+  .contact-form--survey .survey-check-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 720px) {
+  .contact-form--survey .survey-check-grid {
+    grid-template-columns: repeat(3, minmax(0, max-content));
+  }
+}
