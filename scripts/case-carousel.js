@@ -12,12 +12,6 @@ const chevronRight = `
   </svg>
 `;
 
-const closeIcon = `
-  <svg viewBox="0 0 24 24" aria-hidden="true">
-    <path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"/>
-  </svg>
-`;
-
 const makeCases = (slug, treatment, files) => files.map((file) => ({ slug, treatment, file }));
 
 const treatmentCases = {
@@ -50,9 +44,6 @@ const treatmentCases = {
   ])
 };
 
-// Home mezcla casos de distintos tratamientos. Los archivos que son duplicados
-// exactos entre Ultherapy y Morpheus se muestran una sola vez para evitar repetir
-// la misma comparación visual en la secuencia.
 const homeCases = [
   ...treatmentCases["blend-de-ojeras"],
   ...makeCases("morpheus-8", "Morpheus 8", [
@@ -74,81 +65,6 @@ function shuffle(items) {
   }
 
   return copy;
-}
-
-let caseViewer = null;
-
-function ensureCaseViewer() {
-  if (caseViewer) return caseViewer;
-
-  document.body.insertAdjacentHTML(
-    "beforeend",
-    `
-      <div class="spada-case-viewer" data-spada-case-viewer hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Caso clínico ampliado">
-        <button class="spada-case-viewer__close" type="button" data-spada-case-viewer-close aria-label="Cerrar imagen ampliada">
-          ${closeIcon}
-        </button>
-        <div class="spada-case-viewer__frame">
-          <img class="spada-case-viewer__image" data-spada-case-viewer-image alt="" decoding="async" />
-        </div>
-      </div>
-    `
-  );
-
-  const root = document.querySelector("[data-spada-case-viewer]");
-  const image = root?.querySelector("[data-spada-case-viewer-image]");
-  const closeButton = root?.querySelector("[data-spada-case-viewer-close]");
-  let previousOverflow = "";
-  let onClose = null;
-
-  const close = () => {
-    if (!root || root.hidden) return;
-
-    root.classList.remove("is-open");
-    root.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = previousOverflow;
-
-    const resume = onClose;
-    onClose = null;
-
-    window.setTimeout(() => {
-      root.hidden = true;
-      if (image) image.removeAttribute("src");
-      resume?.();
-    }, 220);
-  };
-
-  const open = (src, alt, resumeCallback) => {
-    if (!root || !image) return;
-
-    previousOverflow = document.body.style.overflow;
-    onClose = resumeCallback;
-    image.src = src;
-    image.alt = alt;
-    root.hidden = false;
-    root.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
-
-    window.requestAnimationFrame(() => {
-      root.classList.add("is-open");
-      closeButton?.focus();
-    });
-  };
-
-  root?.addEventListener("click", (event) => {
-    if (event.target === root || event.target.closest("[data-spada-case-viewer-close]")) {
-      close();
-    }
-  });
-
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && root && !root.hidden) {
-      close();
-    }
-  });
-
-  caseViewer = { open, close };
-  return caseViewer;
 }
 
 function createCaseCarousel(sourceItems, { home = false } = {}) {
@@ -173,6 +89,37 @@ function createCaseCarousel(sourceItems, { home = false } = {}) {
     `
     : "";
 
+  const caseMedia = home
+    ? `
+      <button
+        class="spada-case-media spada-case-media--link"
+        type="button"
+        data-spada-case-media
+        aria-label="Ver tratamiento ${first.treatment}"
+      >
+        <img
+          class="spada-case-image"
+          data-spada-case-image
+          src="${assetPath(first.file)}"
+          alt="Caso clínico de ${first.treatment}"
+          loading="eager"
+          decoding="async"
+        />
+      </button>
+    `
+    : `
+      <div class="spada-case-media" data-spada-case-media>
+        <img
+          class="spada-case-image"
+          data-spada-case-image
+          src="${assetPath(first.file)}"
+          alt="Caso clínico de ${first.treatment}"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+    `;
+
   section.innerHTML = `
     <div class="shell shell--wide">
       ${heading}
@@ -189,21 +136,7 @@ function createCaseCarousel(sourceItems, { home = false } = {}) {
           </button>
 
           <div class="spada-case-stage" data-spada-case-stage>
-            <button
-              class="spada-case-media${home ? " spada-case-media--link" : " spada-case-media--zoom"}"
-              type="button"
-              data-spada-case-media
-              aria-label="${home ? `Ver tratamiento ${first.treatment}` : "Ampliar caso clínico"}"
-            >
-              <img
-                class="spada-case-image"
-                data-spada-case-image
-                src="${assetPath(first.file)}"
-                alt="Caso clínico de ${first.treatment}"
-                loading="eager"
-                decoding="async"
-              />
-            </button>
+            ${caseMedia}
           </div>
 
           <button
@@ -263,9 +196,9 @@ function createCaseCarousel(sourceItems, { home = false } = {}) {
   };
 
   const syncMediaLabel = () => {
-    if (!media) return;
+    if (!home || !media) return;
     const item = items[currentIndex];
-    media.setAttribute("aria-label", home ? `Ver tratamiento ${item.treatment}` : "Ampliar caso clínico");
+    media.setAttribute("aria-label", `Ver tratamiento ${item.treatment}`);
   };
 
   const goTo = (requestedIndex) => {
@@ -335,23 +268,17 @@ function createCaseCarousel(sourceItems, { home = false } = {}) {
   prev?.addEventListener("click", () => goTo(currentIndex - 1));
   next?.addEventListener("click", () => goTo(currentIndex + 1));
 
-  media?.addEventListener("click", () => {
-    if (suppressMediaClick) {
-      suppressMediaClick = false;
-      return;
-    }
+  if (home) {
+    media?.addEventListener("click", () => {
+      if (suppressMediaClick) {
+        suppressMediaClick = false;
+        return;
+      }
 
-    const item = items[currentIndex];
-
-    if (home) {
+      const item = items[currentIndex];
       window.location.href = `tratamiento.html?slug=${encodeURIComponent(item.slug)}`;
-      return;
-    }
-
-    clearAutoplay();
-    const viewer = ensureCaseViewer();
-    viewer.open(assetPath(item.file), `Caso clínico de ${item.treatment}`, scheduleAutoplay);
-  });
+    });
+  }
 
   carousel?.addEventListener("keydown", (event) => {
     if (event.key === "ArrowLeft") {
@@ -378,7 +305,7 @@ function createCaseCarousel(sourceItems, { home = false } = {}) {
     pointerStartX = null;
 
     if (Math.abs(distance) < 42) return;
-    suppressMediaClick = true;
+    if (home) suppressMediaClick = true;
     goTo(currentIndex + (distance > 0 ? -1 : 1));
   });
 
@@ -416,8 +343,6 @@ function mountHome(app) {
 
   if (!treatmentsSection) return false;
 
-  // El carrusel anterior sigue en el render base; se retira para dejar una sola
-  // implementación y ubicarla exactamente después de "Conocé más tratamientos".
   app.querySelector(".home-before-after")?.remove();
 
   const carousel = createCaseCarousel(homeCases, { home: true });
@@ -441,8 +366,6 @@ function mountTreatment(app) {
   const detailIntro = app.querySelector(".detail-treatment__intro");
   if (!detailSection || !detailIntro) return false;
 
-  // Evita duplicar la interfaz si en el futuro se vuelven a cargar los datos
-  // del carrusel anterior.
   app.querySelector(".before-after-block")?.remove();
 
   const carousel = createCaseCarousel(cases);
@@ -457,9 +380,6 @@ function mountTreatment(app) {
     detailIntro.insertAdjacentElement("afterend", carousel);
   }
 
-  // La página de detalle usa CSS Grid. Definimos el orden explícitamente para
-  // garantizar que los casos queden después de toda la información principal
-  // y antes de Literatura científica, independientemente del timing de carga.
   detailIntro.classList.add("spada-detail-intro-ordered");
   Array.from(detailSection.children).forEach((child) => {
     if (child !== detailIntro && child !== carousel && child !== scientificSupport) {
