@@ -12,10 +12,16 @@ const chevronRight = `
   </svg>
 `;
 
-const makeCases = (treatment, files) => files.map((file) => ({ treatment, file }));
+const closeIcon = `
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"/>
+  </svg>
+`;
+
+const makeCases = (slug, treatment, files) => files.map((file) => ({ slug, treatment, file }));
 
 const treatmentCases = {
-  "ultherapy-prime": makeCases("Ultherapy Prime", [
+  "ultherapy-prime": makeCases("ultherapy-prime", "Ultherapy Prime", [
     "Caso ultherapy anusic.png",
     "caso ultherapy Boutto.png",
     "caso ultherapy hombre.png",
@@ -26,7 +32,7 @@ const treatmentCases = {
     "caso up orteu (3).png",
     "caso up rodillas spada.png"
   ]),
-  "morpheus-8": makeCases("Morpheus 8", [
+  "morpheus-8": makeCases("morpheus-8", "Morpheus 8", [
     "Caso Morpheus 8.png",
     "caso morpheus 8 campos.png",
     "caso morpheus Boutto.png",
@@ -35,7 +41,7 @@ const treatmentCases = {
     "caso morpheus orteu (2).png",
     "caso morpheus orteu (3).png"
   ]),
-  "blend-de-ojeras": makeCases("Blend de ojeras", [
+  "blend-de-ojeras": makeCases("blend-de-ojeras", "Blend de ojeras", [
     "Caso blend de ojeras drzeuko.png",
     "caso blend de ojeras analuz.png",
     "caso blend de ojeras bruschini.png",
@@ -44,11 +50,12 @@ const treatmentCases = {
   ])
 };
 
-// Home uses one visual per clinical case. Shared Ultherapy/Morpheus files are
-// represented once here so the same before/after does not repeat in the loop.
+// Home mezcla casos de distintos tratamientos. Los archivos que son duplicados
+// exactos entre Ultherapy y Morpheus se muestran una sola vez para evitar repetir
+// la misma comparación visual en la secuencia.
 const homeCases = [
   ...treatmentCases["blend-de-ojeras"],
-  ...makeCases("Morpheus 8", [
+  ...makeCases("morpheus-8", "Morpheus 8", [
     "Caso Morpheus 8.png",
     "caso morpheus 8 campos.png",
     "caso morpheus churin.png"
@@ -69,6 +76,81 @@ function shuffle(items) {
   return copy;
 }
 
+let caseViewer = null;
+
+function ensureCaseViewer() {
+  if (caseViewer) return caseViewer;
+
+  document.body.insertAdjacentHTML(
+    "beforeend",
+    `
+      <div class="spada-case-viewer" data-spada-case-viewer hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Caso clínico ampliado">
+        <button class="spada-case-viewer__close" type="button" data-spada-case-viewer-close aria-label="Cerrar imagen ampliada">
+          ${closeIcon}
+        </button>
+        <div class="spada-case-viewer__frame">
+          <img class="spada-case-viewer__image" data-spada-case-viewer-image alt="" decoding="async" />
+        </div>
+      </div>
+    `
+  );
+
+  const root = document.querySelector("[data-spada-case-viewer]");
+  const image = root?.querySelector("[data-spada-case-viewer-image]");
+  const closeButton = root?.querySelector("[data-spada-case-viewer-close]");
+  let previousOverflow = "";
+  let onClose = null;
+
+  const close = () => {
+    if (!root || root.hidden) return;
+
+    root.classList.remove("is-open");
+    root.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = previousOverflow;
+
+    const resume = onClose;
+    onClose = null;
+
+    window.setTimeout(() => {
+      root.hidden = true;
+      if (image) image.removeAttribute("src");
+      resume?.();
+    }, 220);
+  };
+
+  const open = (src, alt, resumeCallback) => {
+    if (!root || !image) return;
+
+    previousOverflow = document.body.style.overflow;
+    onClose = resumeCallback;
+    image.src = src;
+    image.alt = alt;
+    root.hidden = false;
+    root.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+
+    window.requestAnimationFrame(() => {
+      root.classList.add("is-open");
+      closeButton?.focus();
+    });
+  };
+
+  root?.addEventListener("click", (event) => {
+    if (event.target === root || event.target.closest("[data-spada-case-viewer-close]")) {
+      close();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && root && !root.hidden) {
+      close();
+    }
+  });
+
+  caseViewer = { open, close };
+  return caseViewer;
+}
+
 function createCaseCarousel(sourceItems, { home = false } = {}) {
   const items = shuffle(sourceItems);
 
@@ -77,49 +159,70 @@ function createCaseCarousel(sourceItems, { home = false } = {}) {
   }
 
   const section = document.createElement("section");
-  section.className = `section spada-case-section${home ? " spada-case-section--home" : ""}`;
+  section.className = `section spada-case-section${home ? " spada-case-section--home" : " spada-case-section--treatment"}`;
   section.dataset.spadaCaseSection = "";
 
   const first = items[0];
-  section.innerHTML = `
-    <div class="shell shell--wide spada-case-shell">
-      <div class="spada-case-carousel" data-spada-case-carousel aria-label="Casos clínicos" tabindex="0">
-        <button
-          class="spada-case-arrow spada-case-arrow--prev"
-          type="button"
-          data-spada-case-prev
-          aria-label="Ver caso anterior"
-          ${items.length > 1 ? "" : "hidden"}
-        >
-          ${chevronLeft}
-        </button>
-
-        <div class="spada-case-stage" data-spada-case-stage>
-          <img
-            class="spada-case-image"
-            data-spada-case-image
-            src="${assetPath(first.file)}"
-            alt="Caso clínico de ${first.treatment}"
-            loading="eager"
-            decoding="async"
-          />
+  const heading = home
+    ? `
+      <div class="section-heading spada-case-heading" data-animate>
+        <div>
+          <h2>Nuestros casos clínicos</h2>
         </div>
+      </div>
+    `
+    : "";
 
-        <button
-          class="spada-case-arrow spada-case-arrow--next"
-          type="button"
-          data-spada-case-next
-          aria-label="Ver siguiente caso"
-          ${items.length > 1 ? "" : "hidden"}
-        >
-          ${chevronRight}
-        </button>
+  section.innerHTML = `
+    <div class="shell shell--wide">
+      ${heading}
+      <div class="spada-case-shell">
+        <div class="spada-case-carousel" data-spada-case-carousel aria-label="Casos clínicos" tabindex="0">
+          <button
+            class="spada-case-arrow spada-case-arrow--prev"
+            type="button"
+            data-spada-case-prev
+            aria-label="Ver caso anterior"
+            ${items.length > 1 ? "" : "hidden"}
+          >
+            ${chevronLeft}
+          </button>
+
+          <div class="spada-case-stage" data-spada-case-stage>
+            <button
+              class="spada-case-media${home ? " spada-case-media--link" : " spada-case-media--zoom"}"
+              type="button"
+              data-spada-case-media
+              aria-label="${home ? `Ver tratamiento ${first.treatment}` : "Ampliar caso clínico"}"
+            >
+              <img
+                class="spada-case-image"
+                data-spada-case-image
+                src="${assetPath(first.file)}"
+                alt="Caso clínico de ${first.treatment}"
+                loading="eager"
+                decoding="async"
+              />
+            </button>
+          </div>
+
+          <button
+            class="spada-case-arrow spada-case-arrow--next"
+            type="button"
+            data-spada-case-next
+            aria-label="Ver siguiente caso"
+            ${items.length > 1 ? "" : "hidden"}
+          >
+            ${chevronRight}
+          </button>
+        </div>
       </div>
     </div>
   `;
 
   const carousel = section.querySelector("[data-spada-case-carousel]");
   const stage = section.querySelector("[data-spada-case-stage]");
+  const media = section.querySelector("[data-spada-case-media]");
   const image = section.querySelector("[data-spada-case-image]");
   const prev = section.querySelector("[data-spada-case-prev]");
   const next = section.querySelector("[data-spada-case-next]");
@@ -127,10 +230,10 @@ function createCaseCarousel(sourceItems, { home = false } = {}) {
 
   let currentIndex = 0;
   let autoplayTimer = 0;
-  let transitionTimer = 0;
   let loadFallbackTimer = 0;
   let isTransitioning = false;
   let pointerStartX = null;
+  let suppressMediaClick = false;
 
   const clearAutoplay = () => {
     if (autoplayTimer) {
@@ -159,6 +262,12 @@ function createCaseCarousel(sourceItems, { home = false } = {}) {
     }, AUTOPLAY_DELAY);
   };
 
+  const syncMediaLabel = () => {
+    if (!media) return;
+    const item = items[currentIndex];
+    media.setAttribute("aria-label", home ? `Ver tratamiento ${item.treatment}` : "Ampliar caso clínico");
+  };
+
   const goTo = (requestedIndex) => {
     if (items.length < 2 || isTransitioning) {
       return;
@@ -185,6 +294,7 @@ function createCaseCarousel(sourceItems, { home = false } = {}) {
       currentIndex = nextIndex;
       image.src = nextSrc;
       image.alt = `Caso clínico de ${nextItem.treatment}`;
+      syncMediaLabel();
 
       window.requestAnimationFrame(() => {
         window.requestAnimationFrame(() => {
@@ -211,7 +321,7 @@ function createCaseCarousel(sourceItems, { home = false } = {}) {
     loader.decoding = "async";
     loader.src = nextSrc;
 
-    transitionTimer = window.setTimeout(() => {
+    window.setTimeout(() => {
       fadeReady = true;
       commit();
     }, 220);
@@ -224,6 +334,24 @@ function createCaseCarousel(sourceItems, { home = false } = {}) {
 
   prev?.addEventListener("click", () => goTo(currentIndex - 1));
   next?.addEventListener("click", () => goTo(currentIndex + 1));
+
+  media?.addEventListener("click", () => {
+    if (suppressMediaClick) {
+      suppressMediaClick = false;
+      return;
+    }
+
+    const item = items[currentIndex];
+
+    if (home) {
+      window.location.href = `tratamiento.html?slug=${encodeURIComponent(item.slug)}`;
+      return;
+    }
+
+    clearAutoplay();
+    const viewer = ensureCaseViewer();
+    viewer.open(assetPath(item.file), `Caso clínico de ${item.treatment}`, scheduleAutoplay);
+  });
 
   carousel?.addEventListener("keydown", (event) => {
     if (event.key === "ArrowLeft") {
@@ -250,6 +378,7 @@ function createCaseCarousel(sourceItems, { home = false } = {}) {
     pointerStartX = null;
 
     if (Math.abs(distance) < 42) return;
+    suppressMediaClick = true;
     goTo(currentIndex + (distance > 0 ? -1 : 1));
   });
 
@@ -274,7 +403,7 @@ function createCaseCarousel(sourceItems, { home = false } = {}) {
 
 function findScientificSupportSection(app) {
   return Array.from(app.querySelectorAll("section")).find((section) => {
-    const eyebrow = section.querySelector(".section-heading__eyebrow");
+    const eyebrow = section.querySelector(":scope > .section-heading .section-heading__eyebrow, :scope > .section-heading__eyebrow");
     return eyebrow?.textContent.trim().toLowerCase() === "literatura científica";
   });
 }
@@ -282,17 +411,19 @@ function findScientificSupportSection(app) {
 function mountHome(app) {
   if (app.querySelector("[data-spada-case-section]")) return true;
 
-  const hero = app.querySelector(".hero--fullbleed");
-  if (!hero) return false;
+  const treatmentsCta = app.querySelector(".home-treatments-cta");
+  const treatmentsSection = treatmentsCta?.closest("section");
 
-  // The repository still contains the older carousel implementation. Remove it
-  // if it is ever rendered so there is only one cases carousel on Home.
+  if (!treatmentsSection) return false;
+
+  // El carrusel anterior sigue en el render base; se retira para dejar una sola
+  // implementación y ubicarla exactamente después de "Conocé más tratamientos".
   app.querySelector(".home-before-after")?.remove();
 
   const carousel = createCaseCarousel(homeCases, { home: true });
   if (!carousel) return true;
 
-  hero.insertAdjacentElement("afterend", carousel);
+  treatmentsSection.insertAdjacentElement("afterend", carousel);
   return true;
 }
 
@@ -306,10 +437,12 @@ function mountTreatment(app) {
     return true;
   }
 
+  const detailSection = app.querySelector(".section--detail-treatment");
   const detailIntro = app.querySelector(".detail-treatment__intro");
-  if (!detailIntro) return false;
+  if (!detailSection || !detailIntro) return false;
 
-  // Avoid duplicate UI if the legacy before/after data is populated later.
+  // Evita duplicar la interfaz si en el futuro se vuelven a cargar los datos
+  // del carrusel anterior.
   app.querySelector(".before-after-block")?.remove();
 
   const carousel = createCaseCarousel(cases);
@@ -317,11 +450,22 @@ function mountTreatment(app) {
 
   const scientificSupport = findScientificSupportSection(app);
 
-  if (scientificSupport?.parentNode) {
-    scientificSupport.parentNode.insertBefore(carousel, scientificSupport);
+  if (scientificSupport?.parentNode === detailSection) {
+    scientificSupport.classList.add("spada-scientific-support");
+    detailSection.insertBefore(carousel, scientificSupport);
   } else {
     detailIntro.insertAdjacentElement("afterend", carousel);
   }
+
+  // La página de detalle usa CSS Grid. Definimos el orden explícitamente para
+  // garantizar que los casos queden después de toda la información principal
+  // y antes de Literatura científica, independientemente del timing de carga.
+  detailIntro.classList.add("spada-detail-intro-ordered");
+  Array.from(detailSection.children).forEach((child) => {
+    if (child !== detailIntro && child !== carousel && child !== scientificSupport) {
+      child.classList.add("spada-detail-after-cases");
+    }
+  });
 
   return true;
 }
