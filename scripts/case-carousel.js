@@ -45,7 +45,38 @@ const treatmentCases = {
   "tarsopexia": makeCases("tarsopexia", "Tarsopexia", [
     "caso Tarsopexia.png",
     "caso Tarsopexia morpheus 8.png",
-    "caso Tarsopexia morpheus 8 (2).png"
+    "caso Tarsopexia morpheus 8 (2).png",
+    "caso tarsopexia quimica.png",
+    "caso tarsopexia quimica (2).png",
+    "caso tarsopexia quimica (3).png",
+    "caso tarsopexia quimica jenaro.png",
+    "caso tarsopexia quimica perez.png",
+    "caso tarsopexia quimica steinhauser.png",
+    "caso tarsopexia quimica ure.png"
+  ]),
+  "harmony-aft-540-950": makeCases("harmony-aft-540-950", "Harmony AFT 540–950", [
+    "Caso Harmony aft chiovetta.png",
+    "Caso harmony aft salto.png",
+    "caso harmony aft.png",
+    "caso harmony aft (2).png",
+    "caso harmony aft lujan.png",
+    "caso harmony aft lujan (2).png"
+  ]),
+  "hueco-supraorbitario": makeCases("hueco-supraorbitario", "Hueco supraorbitario", [
+    "caso hueco supra.png",
+    "caso hueco supra (2).png",
+    "caso hueco supra alegre.png",
+    "caso hueco supra jenaro.png",
+    "caso hueco supra perez.png"
+  ]),
+  "glow-blend": makeCases("glow-blend", "Glow blend", [
+    "caso glow blend.png",
+    "caso glow blend (2).png"
+  ]),
+  "relleno-de-lobulo-de-oreja": makeCases("relleno-de-lobulo-de-oreja", "Relleno de lóbulo de oreja", [
+    "Caso lobulo de la oreja brillantino.png",
+    "Caso lobulo de la oreja brillantino2.png",
+    "caso lobulo de la oreja riva.png"
   ])
 };
 
