@@ -41,11 +41,17 @@ const treatmentCases = {
     "caso blend de ojeras bruschini.png",
     "caso blend de ojeras loewel.png",
     "caso blend de ojeras luli.png"
+  ]),
+  "tarsopexia": makeCases("tarsopexia", "Tarsopexia", [
+    "caso Tarsopexia.png",
+    "caso Tarsopexia morpheus 8.png",
+    "caso Tarsopexia morpheus 8 (2).png"
   ])
 };
 
 const homeCases = [
   ...treatmentCases["blend-de-ojeras"],
+  ...treatmentCases["tarsopexia"],
   ...makeCases("morpheus-8", "Morpheus 8", [
     "Caso Morpheus 8.png",
     "caso morpheus 8 campos.png",
