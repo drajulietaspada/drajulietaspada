@@ -43,9 +43,6 @@ const treatmentCases = {
     "caso blend de ojeras luli.png"
   ]),
   "tarsopexia": makeCases("tarsopexia", "Tarsopexia", [
-    "caso Tarsopexia.png",
-    "caso Tarsopexia morpheus 8.png",
-    "caso Tarsopexia morpheus 8 (2).png",
     "caso tarsopexia quimica.png",
     "caso tarsopexia quimica (2).png",
     "caso tarsopexia quimica (3).png",
