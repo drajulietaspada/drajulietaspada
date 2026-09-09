@@ -74,6 +74,32 @@ const treatmentCases = {
     "Caso lobulo de la oreja brillantino.png",
     "Caso lobulo de la oreja brillantino2.png",
     "caso lobulo de la oreja riva.png"
+  ]),
+  "radiesse": makeCases("radiesse", "Radiesse", [
+    "caso radiesse.png",
+    "caso radiesse (2).png",
+    "caso radiesse da silva.png"
+  ]),
+  "blanching-peribucal": makeCases("blanching-peribucal", "Blanching peribucal", [
+    "Caso blanching peribucal adelina.png"
+  ]),
+  "rinomodelacion": makeCases("rinomodelacion", "Rinomodelación", [
+    "Caso rino groisman.png",
+    "caso rino.png",
+    "caso rino (2).png",
+    "caso rino elizabeth.png",
+    "caso rino elizabeth 2.png"
+  ]),
+  "arrugas-en-el-tercio-superior": makeCases("arrugas-en-el-tercio-superior", "Arrugas en el tercio superior", [
+    "Caso tercio superior casal.png",
+    "Caso tercio superior chiovetta.png",
+    "Caso tercio superior dominguez.png",
+    "caso tercio superior mazzeo.png",
+    "caso tercio superior.png"
+  ]),
+  "relleno-de-frente": makeCases("relleno-de-frente", "Relleno de frente", [
+    "Caso relleno frente casal.png",
+    "Caso relleno frente dominguez.png"
   ])
 };
 
