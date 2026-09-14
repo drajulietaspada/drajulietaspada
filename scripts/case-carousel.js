@@ -14,6 +14,14 @@ const chevronRight = `
 
 const makeCases = (slug, treatment, files) => files.map((file) => ({ slug, treatment, file }));
 
+const radiesseNctfhaCases = [
+  "Caso  radiesse + ncftha 135 abdala.png",
+  "Caso radiesse + ncftha 135 cioccio.png",
+  "Caso radiesse + ncftha 135 cioccio 2.png",
+  "Caso radiesse + ncftha 135 manos abdala.png",
+  "Caso radiesse + ncftha 135 salto.png"
+];
+
 const treatmentCases = {
   "ultherapy-prime": makeCases("ultherapy-prime", "Ultherapy Prime", [
     "Caso ultherapy anusic.png",
@@ -35,6 +43,22 @@ const treatmentCases = {
     "caso morpheus orteu (2).png",
     "caso morpheus orteu (3).png"
   ]),
+  "facetite": makeCases("facetite", "FaceTite", [
+    "Caso facetite rojas1.png",
+    "Caso facetite rojas2.png"
+  ]),
+  "harmony-aft-540-950": makeCases("harmony-aft-540-950", "Harmony AFT 540–950", [
+    "Caso Harmony aft chiovetta.png",
+    "Caso harmony aft salto.png",
+    "caso harmony aft.png",
+    "caso harmony aft (2).png",
+    "caso harmony aft lujan.png",
+    "caso harmony aft lujan (2).png"
+  ]),
+  "harmony-pixel-erbium": makeCases("harmony-pixel-erbium", "Harmony Pixel Erbium", [
+    "caso erbium campos.png",
+    "caso erbium campos (2).png"
+  ]),
   "blend-de-ojeras": makeCases("blend-de-ojeras", "Blend de ojeras", [
     "Caso blend de ojeras drzeuko.png",
     "caso blend de ojeras analuz.png",
@@ -51,13 +75,9 @@ const treatmentCases = {
     "caso tarsopexia quimica steinhauser.png",
     "caso tarsopexia quimica ure.png"
   ]),
-  "harmony-aft-540-950": makeCases("harmony-aft-540-950", "Harmony AFT 540–950", [
-    "Caso Harmony aft chiovetta.png",
-    "Caso harmony aft salto.png",
-    "caso harmony aft.png",
-    "caso harmony aft (2).png",
-    "caso harmony aft lujan.png",
-    "caso harmony aft lujan (2).png"
+  "traptox": makeCases("traptox", "Traptox", [
+    "Caso traptox bevilaquia.png",
+    "Caso traptox bevilaquia 2.png"
   ]),
   "hueco-supraorbitario": makeCases("hueco-supraorbitario", "Hueco supraorbitario", [
     "caso hueco supra.png",
@@ -70,15 +90,17 @@ const treatmentCases = {
     "caso glow blend.png",
     "caso glow blend (2).png"
   ]),
-  "relleno-de-lobulo-de-oreja": makeCases("relleno-de-lobulo-de-oreja", "Relleno de lóbulo de oreja", [
-    "Caso lobulo de la oreja brillantino.png",
-    "Caso lobulo de la oreja brillantino2.png",
-    "caso lobulo de la oreja riva.png"
-  ]),
   "radiesse": makeCases("radiesse", "Radiesse", [
     "caso radiesse.png",
     "caso radiesse (2).png",
     "caso radiesse da silva.png"
+  ]),
+  "radiesse-nctfha-135": makeCases("radiesse-nctfha-135", "Radiesse + NCTFHA 135", radiesseNctfhaCases),
+  "nctfha-135": makeCases("nctfha-135", "NCTFHA 135", radiesseNctfhaCases),
+  "relleno-de-lobulo-de-oreja": makeCases("relleno-de-lobulo-de-oreja", "Relleno de lóbulo de oreja", [
+    "Caso lobulo de la oreja brillantino.png",
+    "Caso lobulo de la oreja brillantino2.png",
+    "caso lobulo de la oreja riva.png"
   ]),
   "blanching-peribucal": makeCases("blanching-peribucal", "Blanching peribucal", [
     "Caso blanching peribucal adelina.png"
@@ -89,6 +111,26 @@ const treatmentCases = {
     "caso rino (2).png",
     "caso rino elizabeth.png",
     "caso rino elizabeth 2.png"
+  ]),
+  "acido-hialuronico-en-labios": makeCases("acido-hialuronico-en-labios", "Ácido hialurónico en labios", [
+    "Caso Labios boutto.png",
+    "Caso labios2.png",
+    "caso labios andrea.png",
+    "caso labios1.png"
+  ]),
+  "surco-nasogeniano": makeCases("surco-nasogeniano", "Surco nasogeniano", [
+    "Caso surco nasogeniano.png",
+    "caso surco nasogeniano bianccioti.png",
+    "caso surco nasogeniano lujan1.png",
+    "caso surco nasogeniano sivori.png"
+  ]),
+  "surco-labiomentoniano": makeCases("surco-labiomentoniano", "Surco labiomentoniano", [
+    "Caso Surco labiomentoniano 2.png",
+    "Caso surco labiomentoniano bianccioti.png",
+    "Caso surco labiomentoniano bianccioti 2.png"
+  ]),
+  "pbserum-de-primera-y-segunda-generacion": makeCases("pbserum-de-primera-y-segunda-generacion", "PBSerum de primera y segunda generación", [
+    "Caso pb serum fernandez.png"
   ]),
   "arrugas-en-el-tercio-superior": makeCases("arrugas-en-el-tercio-superior", "Arrugas en el tercio superior", [
     "Caso tercio superior casal.png",
