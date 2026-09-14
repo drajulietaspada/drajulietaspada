@@ -5,6 +5,14 @@ const buildWhatsAppUrl = (message) => {
   return `https://wa.me/${WHATSAPP_NUMBER}?${params.toString()}`;
 };
 
+const trackWhatsAppConversion = () => {
+  if (typeof window.gtag === "function") {
+    window.gtag("event", "conversion", {
+      send_to: "AW-18451036425/2_acCMqg9vccEInykd5E"
+    });
+  }
+};
+
 const closeIcon = `
   <svg viewBox="0 0 24 24" aria-hidden="true">
     <path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
@@ -157,7 +165,11 @@ const styles = `
   .spada-whatsapp__body {
     padding: 1.1rem;
     background:
-      radial-gradient(circle at 20% 0%, rgba(var(--accent-rgb, 204, 145, 16), 0.07), transparent 45%),
+      radial-gradient(
+        circle at 20% 0%,
+        rgba(var(--accent-rgb, 204, 145, 16), 0.07),
+        transparent 45%
+      ),
       var(--bg-strong, #f3efea);
   }
 
@@ -195,7 +207,10 @@ const styles = `
     font-size: 0.86rem;
     font-weight: 500;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.045);
-    transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+    transition:
+      transform 160ms ease,
+      border-color 160ms ease,
+      box-shadow 160ms ease;
   }
 
   .spada-whatsapp__option:hover {
@@ -323,21 +338,41 @@ function mountWhatsAppWidget() {
   const widget = document.createElement("aside");
   widget.className = "spada-whatsapp";
   widget.dataset.spadaWhatsapp = "";
+
   widget.innerHTML = `
-    <section class="spada-whatsapp__panel" data-whatsapp-panel hidden aria-label="Chat de WhatsApp">
+    <section
+      class="spada-whatsapp__panel"
+      data-whatsapp-panel
+      hidden
+      aria-label="Chat de WhatsApp"
+    >
       <header class="spada-whatsapp__header">
-        <img class="spada-whatsapp__logo" src="images/image.png" alt="" />
+        <img
+          class="spada-whatsapp__logo"
+          src="images/image.png"
+          alt=""
+        />
+
         <div class="spada-whatsapp__identity">
           <strong>Spada Dermatología &amp; Estética</strong>
           <span>WhatsApp</span>
         </div>
-        <button class="spada-whatsapp__close" type="button" data-whatsapp-close aria-label="Cerrar chat">
+
+        <button
+          class="spada-whatsapp__close"
+          type="button"
+          data-whatsapp-close
+          aria-label="Cerrar chat"
+        >
           ${closeIcon}
         </button>
       </header>
 
       <div class="spada-whatsapp__body">
-        <p class="spada-whatsapp__message">Hola 👋 ¿En qué podemos ayudarte?</p>
+        <p class="spada-whatsapp__message">
+          Hola 👋 ¿En qué podemos ayudarte?
+        </p>
+
         <div class="spada-whatsapp__options">
           <a
             class="spada-whatsapp__option"
@@ -345,14 +380,23 @@ function mountWhatsAppWidget() {
             target="_blank"
             rel="noreferrer"
           >
-            <span class="spada-whatsapp__option-icon">${calendarIcon}</span>
+            <span class="spada-whatsapp__option-icon">
+              ${calendarIcon}
+            </span>
+
             <span>Quiero agendar una consulta</span>
-            <span class="spada-whatsapp__option-arrow">${arrowIcon}</span>
+
+            <span class="spada-whatsapp__option-arrow">
+              ${arrowIcon}
+            </span>
           </a>
         </div>
       </div>
 
-      <form class="spada-whatsapp__composer" data-whatsapp-form>
+      <form
+        class="spada-whatsapp__composer"
+        data-whatsapp-form
+      >
         <input
           class="spada-whatsapp__input"
           type="text"
@@ -361,7 +405,12 @@ function mountWhatsAppWidget() {
           placeholder="Escribí tu mensaje..."
           aria-label="Mensaje para WhatsApp"
         />
-        <button class="spada-whatsapp__send" type="submit" aria-label="Enviar por WhatsApp">
+
+        <button
+          class="spada-whatsapp__send"
+          type="submit"
+          aria-label="Enviar por WhatsApp"
+        >
           ${arrowIcon}
         </button>
       </form>
@@ -390,14 +439,29 @@ function mountWhatsAppWidget() {
   const closeButton = widget.querySelector("[data-whatsapp-close]");
   const form = widget.querySelector("[data-whatsapp-form]");
   const input = form.querySelector("input[name='message']");
+  const bookingLink = widget.querySelector(".spada-whatsapp__option");
+
+  bookingLink?.addEventListener("click", () => {
+    trackWhatsAppConversion();
+  });
 
   const setOpen = (open) => {
     panel.hidden = !open;
+
     launcher.setAttribute("aria-expanded", String(open));
-    launcher.setAttribute("aria-label", open ? "Cerrar chat de WhatsApp" : "Abrir chat de WhatsApp");
+
+    launcher.setAttribute(
+      "aria-label",
+      open
+        ? "Cerrar chat de WhatsApp"
+        : "Abrir chat de WhatsApp"
+    );
 
     if (open) {
-      window.setTimeout(() => input.focus({ preventScroll: true }), 40);
+      window.setTimeout(
+        () => input.focus({ preventScroll: true }),
+        40
+      );
     }
   };
 
@@ -405,16 +469,27 @@ function mountWhatsAppWidget() {
     setOpen(panel.hidden);
   });
 
-  closeButton.addEventListener("click", () => setOpen(false));
+  closeButton.addEventListener("click", () => {
+    setOpen(false);
+  });
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
+
     const message = input.value.trim();
+
     if (!message) {
       input.focus();
       return;
     }
-    window.open(buildWhatsAppUrl(message), "_blank", "noopener,noreferrer");
+
+    trackWhatsAppConversion();
+
+    window.open(
+      buildWhatsAppUrl(message),
+      "_blank",
+      "noopener,noreferrer"
+    );
   });
 
   document.addEventListener("keydown", (event) => {
@@ -432,7 +507,11 @@ function mountWhatsAppWidget() {
 }
 
 if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", mountWhatsAppWidget, { once: true });
+  document.addEventListener(
+    "DOMContentLoaded",
+    mountWhatsAppWidget,
+    { once: true }
+  );
 } else {
   mountWhatsAppWidget();
 }
