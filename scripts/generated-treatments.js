@@ -36,6 +36,18 @@ const treatmentEntries = [
   },
   {
     category: "Tecnologías y aparatología facial y corporal",
+    title: "FaceTite",
+    excerpt:
+      "FaceTite es un tratamiento mínimamente invasivo de InMode que utiliza radiofrecuencia asistida (RFAL) para trabajar en el plano subdérmico. La energía se aplica de manera controlada para favorecer la contracción de los tejidos y remodelar determinadas áreas del rostro.",
+    details: [
+      "Se utiliza para mejorar la flacidez y la definición del contorno facial, especialmente en el tercio inferior, línea mandibular, papada y cuello. También puede actuar sobre adiposidad localizada en áreas seleccionadas.",
+      "Está indicado en pacientes con flacidez leve a moderada, pérdida de definición mandibular, jowls, papada o adiposidad localizada en el tercio inferior del rostro y cuello, cuando la evaluación médica determina que es necesario trabajar tanto la contracción de los tejidos como el contorno facial."
+    ],
+    image: "images/facetite.png",
+    imagePosition: "center center"
+  },
+  {
+    category: "Tecnologías y aparatología facial y corporal",
     title: "Harmony AFT 540–950",
     excerpt:
       "Harmony AFT 540–950 es una tecnología lumínica de amplio espectro, una evolución de la luz pulsada intensa, diseñada para tratar diferentes alteraciones de color y textura.",
@@ -436,10 +448,8 @@ const treatmentEntries = [
 const featuredTitles = new Set([
   "Ultherapy Prime",
   "Morpheus 8",
-  "Arrugas en el tercio superior",
-  "Radiesse",
-  "Rinomodelación",
-  "PRP (Plasma Rico en Plaquetas) facial"
+  "FaceTite",
+  "Blend de ojeras"
 ]);
 
 function slugify(value) {
