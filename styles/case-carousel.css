@@ -130,7 +130,7 @@
   display: block;
   max-width: 100%;
   font-family: "Montserrat", sans-serif;
-  font-size: clamp(1.2rem, 2.7vw, 2rem);
+  font-size: clamp(1rem, 2.2vw, 1.7rem);
   font-weight: 400;
   line-height: 1.08;
   letter-spacing: -0.02em;
@@ -265,7 +265,7 @@
   }
 
   .spada-case-caption__title {
-    font-size: clamp(1.05rem, 5vw, 1.45rem);
+    font-size: clamp(0.85rem, 4.1vw, 1.15rem);
   }
 
   .spada-case-caption__cta {
@@ -283,6 +283,36 @@
 
   .spada-case-arrow--next {
     right: 0.1rem;
+  }
+
+  .spada-case-section--home .spada-case-carousel {
+    padding-inline: 1.55rem;
+  }
+
+  .spada-case-section--home .spada-case-stage {
+    min-height: clamp(18rem, 100vw, 29rem);
+  }
+
+  .spada-case-section--home .spada-case-image {
+    max-height: clamp(18rem, 100vw, 29rem);
+  }
+
+  .spada-case-section--home .spada-case-arrow {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .spada-case-section--home .spada-case-arrow svg {
+    width: 0.92rem;
+    height: 0.92rem;
+  }
+
+  .spada-case-section--home .spada-case-arrow--prev {
+    left: 0;
+  }
+
+  .spada-case-section--home .spada-case-arrow--next {
+    right: 0;
   }
 }
 
