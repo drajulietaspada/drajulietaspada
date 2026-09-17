@@ -78,6 +78,10 @@ const treatmentCases = {
     "Caso traptox bevilaquia.png",
     "Caso traptox bevilaquia 2.png"
   ]),
+  "hiperhidrosis": makeCases("hiperhidrosis", "Hiperhidrosis", [
+    "Caso hiperhidrosis romero1.png",
+    "Caso hiperhidrosis romero2.png"
+  ]),
   "hueco-supraorbitario": makeCases("hueco-supraorbitario", "Hueco supraorbitario", [
     "caso hueco supra.png",
     "caso hueco supra (2).png",
