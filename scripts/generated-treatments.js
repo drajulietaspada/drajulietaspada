@@ -56,7 +56,7 @@ const treatmentEntries = [
       "Está indicado en pacientes con flacidez leve a moderada, pérdida de firmeza o grasa localizada, tanto en áreas faciales como corporales, según evaluación médica."
     ],
     image: "images/exilis ultra.png",
-    imagePosition: "center 38%"
+    imagePosition: "center 24%"
   },
   {
     category: "Tecnologías y aparatología facial y corporal",
