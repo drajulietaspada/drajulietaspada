@@ -144,6 +144,18 @@ const treatmentEntries = [
   },
   {
     category: "Toxina botulínica",
+    title: "Hiperhidrosis",
+    excerpt:
+      "La hiperhidrosis es una condición médica caracterizada por una sudoración excesiva que supera la necesaria para regular la temperatura corporal. Puede afectar una o varias zonas del cuerpo. Las localizaciones más frecuentes son axilas, palmas de las manos, plantas de los pies, rostro y cuero cabelludo, aunque también puede presentarse en espalda, pecho, región inguinal, debajo de las mamas, glúteos y otras áreas localizadas.",
+    details: [
+      "En Spada Dermatología y Estética tratamos la hiperhidrosis con toxina botulínica, aplicada de manera estratégica en la zona donde se produce la sudoración excesiva. La toxina botulínica actúa sobre las señales nerviosas que estimulan las glándulas sudoríparas, ayudando a disminuir la producción de sudor en el área tratada. El tratamiento puede realizarse en axilas, manos, pies, frente, rostro y cuero cabelludo, y también evaluarse en otras zonas con hiperhidrosis focal. Cada área requiere una técnica y una planificación específica.",
+      "Está indicado en pacientes con hiperhidrosis axilar, palmar, plantar o craneofacial, así como en otras formas de sudoración focal que interfieren con la vida cotidiana, la actividad laboral, el uso de determinadas prendas o el bienestar del paciente. Antes del tratamiento se realiza una evaluación médica para identificar las zonas de mayor sudoración y determinar el origen de la hiperhidrosis. A partir de ese diagnóstico se define qué áreas tratar y el abordaje más adecuado para cada caso."
+    ],
+    image: "images/hiperhidrosis.png",
+    imagePosition: "center center"
+  },
+  {
+    category: "Toxina botulínica",
     title: "Tarsopexia",
     excerpt:
       "Es un abordaje periocular con toxina botulínica en puntos seleccionados para modular la dinámica muscular y equilibrar la mirada.",
