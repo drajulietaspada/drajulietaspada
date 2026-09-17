@@ -48,6 +48,18 @@ const treatmentEntries = [
   },
   {
     category: "Tecnologías y aparatología facial y corporal",
+    title: "Exilis Ultra 360",
+    excerpt:
+      "Exilis Ultra 360 es una tecnología no invasiva que combina de manera simultánea radiofrecuencia monopolar y ultrasonido, con control de temperatura y energía, para trabajar rostro y cuerpo.",
+    details: [
+      "Permite trabajar en diferentes profundidades para mejorar la flacidez, estimular colágeno, reafirmar la piel y redefinir el contorno facial y corporal. También puede utilizarse sobre adiposidad localizada.",
+      "Está indicado en pacientes con flacidez leve a moderada, pérdida de firmeza o grasa localizada, tanto en áreas faciales como corporales, según evaluación médica."
+    ],
+    image: "images/exilis ultra.png",
+    imagePosition: "center center"
+  },
+  {
+    category: "Tecnologías y aparatología facial y corporal",
     title: "Harmony AFT 540–950",
     excerpt:
       "Harmony AFT 540–950 es una tecnología lumínica de amplio espectro, una evolución de la luz pulsada intensa, diseñada para tratar diferentes alteraciones de color y textura.",
