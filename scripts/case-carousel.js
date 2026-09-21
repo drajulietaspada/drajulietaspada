@@ -84,7 +84,6 @@ const treatmentCases = {
   ]),
   "hueco-supraorbitario": makeCases("hueco-supraorbitario", "Hueco supraorbitario", [
     "caso hueco supra.png",
-    "caso hueco supra (2).png",
     "caso hueco supra alegre.png",
     "caso hueco supra jenaro.png",
     "caso hueco supra perez.png"
