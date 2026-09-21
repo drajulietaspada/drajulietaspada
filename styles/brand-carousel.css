@@ -1,0 +1,69 @@
+.spada-brand-carousel-section {
+  width: 100%;
+  overflow: hidden;
+  padding: clamp(2.5rem, 5.2vw, 4.6rem) 0;
+  background: rgba(255, 255, 255, 0.72);
+  border-block: 1px solid rgba(17, 17, 17, 0.055);
+}
+
+.spada-brand-carousel {
+  width: 100%;
+  overflow: hidden;
+  cursor: grab;
+  user-select: none;
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.spada-brand-carousel.is-dragging {
+  cursor: grabbing;
+}
+
+.spada-brand-carousel__track {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  gap: clamp(2.4rem, 5vw, 5.5rem);
+  will-change: transform;
+}
+
+.spada-brand-carousel__set {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: clamp(2.4rem, 5vw, 5.5rem);
+}
+
+.spada-brand-carousel__item {
+  display: grid;
+  flex: 0 0 clamp(8.5rem, 13vw, 11.5rem);
+  width: clamp(8.5rem, 13vw, 11.5rem);
+  height: clamp(4.5rem, 7vw, 6.4rem);
+  place-items: center;
+}
+
+.spada-brand-carousel__logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  pointer-events: none;
+}
+
+@media (max-width: 719px) {
+  .spada-brand-carousel-section {
+    padding: 2.2rem 0;
+  }
+
+  .spada-brand-carousel__track,
+  .spada-brand-carousel__set {
+    gap: 2rem;
+  }
+
+  .spada-brand-carousel__item {
+    flex-basis: clamp(7rem, 32vw, 9rem);
+    width: clamp(7rem, 32vw, 9rem);
+    height: clamp(3.9rem, 18vw, 5.2rem);
+  }
+}
