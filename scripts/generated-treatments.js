@@ -91,7 +91,7 @@ const treatmentEntries = [
       "Mejora arrugas finas, textura irregular, cicatrices, poros y signos de fotodaño.",
       "Está indicado en pacientes con piel fotoenvejecida, marcas de acné, líneas finas o necesidad de una renovación cutánea más intensa y controlada."
     ],
-    image: "images/JAB02616.png",
+    image: "images/harmonyerbium.png",
     imagePosition: "center 18%"
   },
   {
