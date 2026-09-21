@@ -31,8 +31,8 @@ const treatmentEntries = [
       "Ayuda a mejorar flacidez, textura, poros, marcas de acné y calidad general de la piel en rostro y cuerpo.",
       "Suele indicarse en pacientes con pérdida de firmeza, cicatrices, poros dilatados o piel engrosada que necesitan remodelación cutánea y una mejor definición del contorno."
     ],
-    image: "images/JAB02559.png",
-    imagePosition: "center 18%"
+    image: "images/morpheus82.png",
+    imagePosition: "center center"
   },
   {
     category: "Tecnologías y aparatología facial y corporal",
@@ -55,8 +55,8 @@ const treatmentEntries = [
       "Permite trabajar en diferentes profundidades para mejorar la flacidez, estimular colágeno, reafirmar la piel y redefinir el contorno facial y corporal. También puede utilizarse sobre adiposidad localizada.",
       "Está indicado en pacientes con flacidez leve a moderada, pérdida de firmeza o grasa localizada, tanto en áreas faciales como corporales, según evaluación médica."
     ],
-    image: "images/exilis ultra.png",
-    imagePosition: "center bottom"
+    image: "images/exilis ultra2.png",
+    imagePosition: "center center"
   },
   {
     category: "Tecnologías y aparatología facial y corporal",
@@ -67,8 +67,8 @@ const treatmentEntries = [
       "Se utiliza para mejorar manchas, tono desparejo, daño solar y ciertas lesiones vasculares superficiales.",
       "Está indicada en pieles con fotodaño, rojeces, discromías o falta de luminosidad, siempre según fototipo y diagnóstico dermatológico."
     ],
-    image: "images/JAB02584.png",
-    imagePosition: "center 18%"
+    image: "images/harmonyaft2.png",
+    imagePosition: "center center"
   },
   {
     category: "Tecnologías y aparatología facial y corporal",
@@ -79,8 +79,8 @@ const treatmentEntries = [
       "Se usa para tratar manchas, melasma en casos seleccionados, tatuajes, poros visibles y rejuvenecimiento no ablativo.",
       "Se indica en pacientes con lesiones pigmentarias, fotodaño o necesidad de aclarar determinados pigmentos cutáneos, siempre con evaluación médica previa."
     ],
-    image: "images/JAB02607.png",
-    imagePosition: "center 18%"
+    image: "images/harmonyqswitched2.png",
+    imagePosition: "center center"
   },
   {
     category: "Tecnologías y aparatología facial y corporal",
