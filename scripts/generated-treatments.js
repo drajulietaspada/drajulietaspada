@@ -43,7 +43,7 @@ const treatmentEntries = [
       "Se utiliza para mejorar la flacidez y la definición del contorno facial, especialmente en el tercio inferior, línea mandibular, papada y cuello. También puede actuar sobre adiposidad localizada en áreas seleccionadas.",
       "Está indicado en pacientes con flacidez leve a moderada, pérdida de definición mandibular, jowls, papada o adiposidad localizada en el tercio inferior del rostro y cuello, cuando la evaluación médica determina que es necesario trabajar tanto la contracción de los tejidos como el contorno facial."
     ],
-    image: "images/facetite.png",
+    image: "images/facetite2.png",
     imagePosition: "center center"
   },
   {
