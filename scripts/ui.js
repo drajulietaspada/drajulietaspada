@@ -211,7 +211,9 @@ export function renderFooter() {
     <footer class="site-footer">
       <div class="shell site-footer__inner">
         <div class="site-footer__brand">
-          ${renderBrandMark(true)}
+          <a class="site-footer__logo" href="index.html" aria-label="${siteConfig.brand.title}">
+            <img src="images/image.png" alt="${siteConfig.brand.title}" loading="lazy" decoding="async" />
+          </a>
           <p class="site-footer__copy">Tratamientos dermatológicos estéticos con enfoque médico y resultados naturales, indicados tras evaluación.</p>
         </div>
         <div class="site-footer__grid">
