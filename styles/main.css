@@ -2825,6 +2825,18 @@ p {
   justify-items: center;
 }
 
+.site-footer__logo {
+  display: block;
+  width: clamp(8.5rem, 22vw, 13rem);
+}
+
+.site-footer__logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
 .site-footer__copy {
   max-width: 32rem;
   color: rgba(255, 255, 255, 0.68);
