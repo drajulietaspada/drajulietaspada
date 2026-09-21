@@ -37,7 +37,6 @@ import {
 const heroDoctorImage = "assets/dra-julieta-spada-hero.png";
 const aboutPageHeroImage = "images/JAB02698.png";
 const homeHeroVideo = "images/videopaginaweb2.mp4";
-const heroSecondaryImage = "images/secundaria.png";
 const treatmentsPageHeroImageMobile = "images/JAB02417-2.png";
 const treatmentsPageHeroImageDesktop = "images/JAB02417.png";
 const aboutSectionHref = "acerca.html#acerca";
@@ -126,7 +125,6 @@ function renderHomePage() {
               loop
               playsinline
               preload="auto"
-              poster="${heroSecondaryImage}"
               aria-label="Presentación de Spada Dermatología y Estética"
             >
               <source src="${homeHeroVideo}" type="video/mp4" />
