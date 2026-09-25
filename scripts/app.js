@@ -290,6 +290,30 @@ function renderTreatmentsPage() {
   syncList();
 }
 
+function syncTreatmentMetadata(treatment) {
+  if (!treatment) {
+    return;
+  }
+
+  document.title = `${treatment.title} | Dra. Julieta Spada | SPADA`;
+
+  let description = document.querySelector('meta[name="description"]');
+  if (!description) {
+    description = document.createElement("meta");
+    description.name = "description";
+    document.head.appendChild(description);
+  }
+  description.content = String(treatment.excerpt || "").slice(0, 160);
+
+  let canonical = document.querySelector('link[rel="canonical"]');
+  if (!canonical) {
+    canonical = document.createElement("link");
+    canonical.rel = "canonical";
+    document.head.appendChild(canonical);
+  }
+  canonical.href = `https://spada.com.ar/tratamiento.html?slug=${encodeURIComponent(treatment.slug)}`;
+}
+
 function renderTreatmentDetailPage() {
   const params = new URLSearchParams(window.location.search);
   const treatment = getTreatmentBySlug(params.get("slug") || "");
@@ -299,6 +323,7 @@ function renderTreatmentDetailPage() {
     return;
   }
 
+  syncTreatmentMetadata(treatment);
   const related = getRelatedTreatments(treatment.slug, 4);
 
   appRoot.innerHTML = `
