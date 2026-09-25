@@ -178,6 +178,53 @@
   outline-offset: 3px;
 }
 
+.spada-case-lightbox__arrow {
+  position: fixed;
+  top: 50%;
+  z-index: 2;
+  display: inline-flex;
+  width: clamp(2.8rem, 5vw, 3.5rem);
+  height: clamp(2.8rem, 5vw, 3.5rem);
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  background: rgba(18, 18, 18, 0.45);
+  color: #fff;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+  transform: translateY(-50%);
+  transition:
+    background-color 180ms ease,
+    transform 180ms ease;
+}
+
+.spada-case-lightbox__arrow:hover,
+.spada-case-lightbox__arrow:focus-visible {
+  background: rgba(18, 18, 18, 0.78);
+}
+
+.spada-case-lightbox__arrow:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 3px;
+}
+
+.spada-case-lightbox__arrow--prev {
+  left: clamp(0.85rem, 2.4vw, 1.5rem);
+}
+
+.spada-case-lightbox__arrow--next {
+  right: clamp(0.85rem, 2.4vw, 1.5rem);
+}
+
+.spada-case-lightbox__arrow svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.spada-case-lightbox__arrow[hidden] {
+  display: none;
+}
+
 .spada-case-caption {
   position: absolute;
   inset: auto 0 0;
@@ -314,6 +361,25 @@
 
   .spada-case-lightbox__image {
     max-height: calc(100vh - 3.25rem);
+  }
+
+  .spada-case-lightbox__arrow {
+    width: 2.45rem;
+    height: 2.45rem;
+    background: rgba(18, 18, 18, 0.56);
+  }
+
+  .spada-case-lightbox__arrow--prev {
+    left: 0.45rem;
+  }
+
+  .spada-case-lightbox__arrow--next {
+    right: 0.45rem;
+  }
+
+  .spada-case-lightbox__arrow svg {
+    width: 1rem;
+    height: 1rem;
   }
 
   .spada-case-section {
