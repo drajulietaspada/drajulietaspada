@@ -175,7 +175,13 @@ function createCaseCarousel(sourceItems) {
           </button>
 
           <div class="spada-case-stage" data-spada-case-stage>
-            <div class="spada-case-media" data-spada-case-media>
+            <button
+              class="spada-case-media spada-case-media--zoom"
+              type="button"
+              data-spada-case-media
+              data-spada-case-open
+              aria-label="Ampliar caso clínico de ${first.treatment}"
+            >
               <img
                 class="spada-case-image"
                 data-spada-case-image
@@ -183,8 +189,9 @@ function createCaseCarousel(sourceItems) {
                 alt="Caso clínico de ${first.treatment}"
                 loading="eager"
                 decoding="async"
+                draggable="false"
               />
-            </div>
+            </button>
           </div>
 
           <button class="spada-case-arrow spada-case-arrow--next" type="button" data-spada-case-next aria-label="Ver caso siguiente" ${items.length > 1 ? "" : "hidden"}>
@@ -198,6 +205,7 @@ function createCaseCarousel(sourceItems) {
   const carousel = section.querySelector("[data-spada-case-carousel]");
   const stage = section.querySelector("[data-spada-case-stage]");
   const image = section.querySelector("[data-spada-case-image]");
+  const open = section.querySelector("[data-spada-case-open]");
   const prev = section.querySelector("[data-spada-case-prev]");
   const next = section.querySelector("[data-spada-case-next]");
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -207,6 +215,9 @@ function createCaseCarousel(sourceItems) {
   let loadFallbackTimer = 0;
   let isTransitioning = false;
   let pointerStartX = null;
+  let suppressOpenClick = false;
+  let lightbox = null;
+  let previousFocus = null;
 
   const clearAutoplay = () => {
     if (!autoplayTimer) return;
@@ -223,7 +234,7 @@ function createCaseCarousel(sourceItems) {
 
   const scheduleAutoplay = () => {
     clearAutoplay();
-    if (items.length < 2 || reducedMotion.matches || document.hidden) return;
+    if (items.length < 2 || reducedMotion.matches || document.hidden || lightbox) return;
 
     preload((currentIndex + 1) % items.length);
     autoplayTimer = window.setTimeout(() => goTo(currentIndex + 1), AUTOPLAY_DELAY);
@@ -251,6 +262,7 @@ function createCaseCarousel(sourceItems) {
       currentIndex = nextIndex;
       image.src = nextSrc;
       image.alt = `Caso clínico de ${nextItem.treatment}`;
+      open?.setAttribute("aria-label", `Ampliar caso clínico de ${nextItem.treatment}`);
 
       window.requestAnimationFrame(() => {
         window.requestAnimationFrame(() => {
@@ -286,7 +298,73 @@ function createCaseCarousel(sourceItems) {
     }, 1400);
   };
 
-  prev?.addEventListener("click", () => goTo(currentIndex - 1));
+  const closeLightbox = () => {
+    if (!lightbox) return;
+
+    lightbox.remove();
+    lightbox = null;
+    document.documentElement.classList.remove("spada-case-lightbox-open");
+
+    if (previousFocus instanceof HTMLElement) {
+      previousFocus.focus({ preventScroll: true });
+    }
+
+    previousFocus = null;
+    scheduleAutoplay();
+  };
+
+  const openLightbox = () => {
+    if (suppressOpenClick) {
+      suppressOpenClick = false;
+      return;
+    }
+
+    if (lightbox) return;
+
+    clearAutoplay();
+    previousFocus = document.activeElement;
+
+    const currentItem = items[currentIndex];
+    lightbox = document.createElement("div");
+    lightbox.className = "spada-case-lightbox";
+    lightbox.setAttribute("role", "dialog");
+    lightbox.setAttribute("aria-modal", "true");
+    lightbox.setAttribute("aria-label", `Caso clínico ampliado de ${currentItem.treatment}`);
+
+    lightbox.innerHTML = `
+      <button class="spada-case-lightbox__close" type="button" aria-label="Cerrar imagen ampliada">
+        <span aria-hidden="true">×</span>
+      </button>
+      <div class="spada-case-lightbox__frame">
+        <img
+          class="spada-case-lightbox__image"
+          src="${assetPath(currentItem.file)}"
+          alt="Caso clínico ampliado de ${currentItem.treatment}"
+          decoding="async"
+          draggable="false"
+        />
+      </div>
+    `;
+
+    lightbox.querySelector(".spada-case-lightbox__close")?.addEventListener("click", closeLightbox);
+    lightbox.addEventListener("click", (event) => {
+      if (event.target === lightbox) closeLightbox();
+    });
+    lightbox.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeLightbox();
+      }
+    });
+
+    document.documentElement.classList.add("spada-case-lightbox-open");
+    document.body.appendChild(lightbox);
+    lightbox.querySelector(".spada-case-lightbox__close")?.focus({ preventScroll: true });
+  };
+
+  open?.addEventListener("click", openLightbox);
+
+    prev?.addEventListener("click", () => goTo(currentIndex - 1));
   next?.addEventListener("click", () => goTo(currentIndex + 1));
 
   carousel?.addEventListener("keydown", (event) => {
@@ -300,7 +378,10 @@ function createCaseCarousel(sourceItems) {
   });
 
   stage?.addEventListener("pointerdown", (event) => {
-    if (event.pointerType === "touch" || event.pointerType === "pen") pointerStartX = event.clientX;
+    if (event.pointerType === "touch" || event.pointerType === "pen") {
+      suppressOpenClick = false;
+      pointerStartX = event.clientX;
+    }
   });
 
   stage?.addEventListener("pointerup", (event) => {
@@ -308,11 +389,14 @@ function createCaseCarousel(sourceItems) {
     const distance = event.clientX - pointerStartX;
     pointerStartX = null;
     if (Math.abs(distance) < 42) return;
+
+    suppressOpenClick = true;
     goTo(currentIndex + (distance > 0 ? -1 : 1));
   });
 
   stage?.addEventListener("pointercancel", () => {
     pointerStartX = null;
+    suppressOpenClick = false;
   });
 
   document.addEventListener("visibilitychange", () => {
