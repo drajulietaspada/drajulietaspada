@@ -218,6 +218,7 @@ function createCaseCarousel(sourceItems) {
   let suppressOpenClick = false;
   let lightbox = null;
   let previousFocus = null;
+  let lightboxPointerStartX = null;
 
   const clearAutoplay = () => {
     if (!autoplayTimer) return;
@@ -313,6 +314,30 @@ function createCaseCarousel(sourceItems) {
     scheduleAutoplay();
   };
 
+  const syncExpandedCase = (requestedIndex) => {
+    if (!lightbox) return;
+
+    currentIndex = (requestedIndex + items.length) % items.length;
+    const currentItem = items[currentIndex];
+    const currentSrc = assetPath(currentItem.file);
+    const expandedImage = lightbox.querySelector(".spada-case-lightbox__image");
+
+    if (expandedImage) {
+      expandedImage.src = currentSrc;
+      expandedImage.alt = `Caso clínico ampliado de ${currentItem.treatment}`;
+    }
+
+    lightbox.setAttribute("aria-label", `Caso clínico ampliado de ${currentItem.treatment}`);
+    image.src = currentSrc;
+    image.alt = `Caso clínico de ${currentItem.treatment}`;
+    open?.setAttribute("aria-label", `Ampliar caso clínico de ${currentItem.treatment}`);
+
+    if (items.length > 1) {
+      preload((currentIndex + 1) % items.length);
+      preload((currentIndex - 1 + items.length) % items.length);
+    }
+  };
+
   const openLightbox = () => {
     if (suppressOpenClick) {
       suppressOpenClick = false;
@@ -335,7 +360,18 @@ function createCaseCarousel(sourceItems) {
       <button class="spada-case-lightbox__close" type="button" aria-label="Cerrar imagen ampliada">
         <span aria-hidden="true">×</span>
       </button>
-      <div class="spada-case-lightbox__frame">
+
+      <button
+        class="spada-case-lightbox__arrow spada-case-lightbox__arrow--prev"
+        type="button"
+        data-spada-case-lightbox-prev
+        aria-label="Ver caso anterior"
+        ${items.length > 1 ? "" : "hidden"}
+      >
+        ${chevronLeft}
+      </button>
+
+      <div class="spada-case-lightbox__frame" data-spada-case-lightbox-frame>
         <img
           class="spada-case-lightbox__image"
           src="${assetPath(currentItem.file)}"
@@ -344,27 +380,76 @@ function createCaseCarousel(sourceItems) {
           draggable="false"
         />
       </div>
+
+      <button
+        class="spada-case-lightbox__arrow spada-case-lightbox__arrow--next"
+        type="button"
+        data-spada-case-lightbox-next
+        aria-label="Ver caso siguiente"
+        ${items.length > 1 ? "" : "hidden"}
+      >
+        ${chevronRight}
+      </button>
     `;
 
+    const lightboxPrev = lightbox.querySelector("[data-spada-case-lightbox-prev]");
+    const lightboxNext = lightbox.querySelector("[data-spada-case-lightbox-next]");
+    const lightboxFrame = lightbox.querySelector("[data-spada-case-lightbox-frame]");
+
     lightbox.querySelector(".spada-case-lightbox__close")?.addEventListener("click", closeLightbox);
+    lightboxPrev?.addEventListener("click", () => syncExpandedCase(currentIndex - 1));
+    lightboxNext?.addEventListener("click", () => syncExpandedCase(currentIndex + 1));
+
     lightbox.addEventListener("click", (event) => {
       if (event.target === lightbox) closeLightbox();
     });
+
     lightbox.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
         event.preventDefault();
         closeLightbox();
+      } else if (event.key === "ArrowLeft" && items.length > 1) {
+        event.preventDefault();
+        syncExpandedCase(currentIndex - 1);
+      } else if (event.key === "ArrowRight" && items.length > 1) {
+        event.preventDefault();
+        syncExpandedCase(currentIndex + 1);
       }
+    });
+
+    lightboxFrame?.addEventListener("pointerdown", (event) => {
+      if (event.pointerType === "touch" || event.pointerType === "pen") {
+        lightboxPointerStartX = event.clientX;
+      }
+    });
+
+    lightboxFrame?.addEventListener("pointerup", (event) => {
+      if (lightboxPointerStartX === null || items.length < 2) return;
+
+      const distance = event.clientX - lightboxPointerStartX;
+      lightboxPointerStartX = null;
+      if (Math.abs(distance) < 42) return;
+
+      syncExpandedCase(currentIndex + (distance > 0 ? -1 : 1));
+    });
+
+    lightboxFrame?.addEventListener("pointercancel", () => {
+      lightboxPointerStartX = null;
     });
 
     document.documentElement.classList.add("spada-case-lightbox-open");
     document.body.appendChild(lightbox);
     lightbox.querySelector(".spada-case-lightbox__close")?.focus({ preventScroll: true });
+
+    if (items.length > 1) {
+      preload((currentIndex + 1) % items.length);
+      preload((currentIndex - 1 + items.length) % items.length);
+    }
   };
 
   open?.addEventListener("click", openLightbox);
 
-    prev?.addEventListener("click", () => goTo(currentIndex - 1));
+  prev?.addEventListener("click", () => goTo(currentIndex - 1));
   next?.addEventListener("click", () => goTo(currentIndex + 1));
 
   carousel?.addEventListener("keydown", (event) => {
