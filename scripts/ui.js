@@ -212,7 +212,7 @@ export function renderFooter() {
       <div class="shell site-footer__inner">
         <div class="site-footer__brand">
           <a class="site-footer__logo" href="index.html" aria-label="${siteConfig.brand.title}">
-            <img src="images/IMG_0132 2.PNG" alt="${siteConfig.brand.title}" loading="lazy" decoding="async" />
+            <img src="images/isologo-blanco.png" alt="${siteConfig.brand.title}" loading="lazy" decoding="async" />
           </a>
           <p class="site-footer__copy">Tratamientos dermatológicos estéticos con enfoque médico y resultados naturales, indicados tras evaluación.</p>
         </div>
