@@ -211,6 +211,7 @@ export const articles = [
     details: ["Estudio disponible en PubMed para lectura completa."],
     externalUrl: "https://pubmed.ncbi.nlm.nih.gov/40786142/"
   }
+];
 
 export const treatments = generatedTreatments.map((item) => ({
   ...item,
