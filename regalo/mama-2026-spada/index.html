@@ -83,6 +83,9 @@
                   <filter id="waxShadow" x="-30%" y="-30%" width="160%" height="170%">
                     <feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#52000b" flood-opacity=".34" />
                   </filter>
+                  <clipPath id="sealLogoClip">
+                    <path d="M140 193C118 173 47 133 47 78C47 50 67 34 92 34C113 34 130 46 140 66C150 46 167 34 188 34C213 34 233 50 233 78C233 133 162 173 140 193Z" />
+                  </clipPath>
                 </defs>
 
                 <path
@@ -111,11 +114,12 @@
 
                 <image
                   href="../../images/isologo-blanco.png"
-                  x="32"
-                  y="82"
-                  width="216"
-                  height="61"
+                  x="50"
+                  y="83"
+                  width="180"
+                  height="56"
                   preserveAspectRatio="xMidYMid slice"
+                  clip-path="url(#sealLogoClip)"
                   opacity="1"
                 />
               </svg>
