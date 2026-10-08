@@ -208,59 +208,71 @@ button {
   display: flex;
   height: 100%;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  gap: clamp(0.65rem, 2vw, 1rem);
-  padding: clamp(2.8rem, 8vw, 4.5rem) clamp(2.1rem, 7vw, 4.1rem);
-  text-wrap: balance;
+  gap: 0;
+  padding: clamp(2.9rem, 8vw, 4.7rem) clamp(2.25rem, 7vw, 4.3rem);
+  text-align: left;
 }
 
 .gift-letter p {
   margin: 0;
 }
 
-.gift-letter__opening {
-  color: #665d5f;
-  font-size: clamp(0.9rem, 2.6vw, 1.13rem);
-  font-weight: 300;
-  letter-spacing: 0.015em;
+.gift-card-copy {
+  color: var(--ink);
 }
 
-.gift-letter__message {
-  max-width: 25rem;
-  color: #51484b;
-  font-size: clamp(1.02rem, 3.4vw, 1.45rem);
-  font-weight: 300;
-  line-height: 1.75;
-}
-
-.gift-letter__message span:not(.gift-letter__heart) {
-  display: block;
-  margin-top: 0.08rem;
-  color: #342e30;
+.gift-card-copy__label {
+  margin: 0 0 clamp(0.25rem, 1vw, 0.45rem);
+  color: #6e6165;
+  font-size: clamp(0.9rem, 2.7vw, 1.15rem);
   font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
-.gift-letter__heart {
-  display: inline-block;
-  margin-left: 0.2rem;
-  transform: translateY(0.08em);
+.gift-card-copy__amount {
+  margin: 0;
+  color: #2f292b;
+  font-size: clamp(2.35rem, 8.5vw, 4.75rem);
+  font-weight: 600;
+  line-height: 0.95;
+  letter-spacing: -0.055em;
 }
 
-.gift-letter__signature {
-  display: grid;
-  gap: 0.26rem;
-  margin-top: clamp(0.6rem, 2vw, 1.1rem);
-  color: #6f6668;
-  font-size: clamp(0.82rem, 2.3vw, 0.98rem);
+.gift-card-copy__intro {
+  max-width: 24rem;
+  margin: clamp(1.25rem, 3.5vw, 1.9rem) 0 0;
+  color: #665d60;
+  font-size: clamp(0.86rem, 2.6vw, 1.08rem);
   font-weight: 300;
   line-height: 1.55;
 }
 
-.gift-letter__brand {
-  color: #2f292b;
-  font-weight: 600 !important;
-  letter-spacing: 0.01em;
+.gift-card-copy__treatments {
+  max-width: 26rem;
+  margin: clamp(0.45rem, 1.5vw, 0.72rem) 0 0;
+  color: #3e3639;
+  font-size: clamp(0.92rem, 2.9vw, 1.18rem);
+  font-weight: 500;
+  line-height: 1.55;
+}
+
+.gift-card-copy__treatments span {
+  display: inline-block;
+  margin-inline: 0.22em;
+  color: var(--wine);
+  font-weight: 400;
+}
+
+.gift-card-copy__validity {
+  margin: clamp(1.6rem, 4.3vw, 2.35rem) 0 0;
+  color: #756b6e;
+  font-size: clamp(0.78rem, 2.25vw, 0.95rem);
+  font-weight: 300;
+  line-height: 1.45;
+  letter-spacing: 0.025em;
 }
 
 .wax-seal {
@@ -413,7 +425,15 @@ button {
   }
 
   .gift-letter__content {
-    padding-inline: clamp(1.9rem, 11vw, 3rem);
+    padding-inline: clamp(2rem, 10vw, 2.8rem);
+  }
+
+  .gift-card-copy__amount {
+    font-size: clamp(2.25rem, 13vw, 3.4rem);
+  }
+
+  .gift-card-copy__treatments {
+    max-width: 19rem;
   }
 
   .gift-letter__lace {
