@@ -12,7 +12,7 @@ const treatmentEntries = [
     imagePosition: "center 16%"
   },
   {
-    category: "Tecnologías y aparatología facial y corporal",
+    category: "Aparatología facial y corporal",
     title: "Ultherapy Prime",
     excerpt:
       "Ultherapy Prime es una tecnología de ultrasonido microfocalizado con visualización que trabaja en planos profundos de la piel sin cirugía.",
@@ -23,7 +23,7 @@ const treatmentEntries = [
     image: "images/ultherapy.png"
   },
   {
-    category: "Tecnologías y aparatología facial y corporal",
+    category: "Aparatología facial y corporal",
     title: "Morpheus 8",
     excerpt:
       "Morpheus 8 combina microagujas con radiofrecuencia fraccionada para actuar sobre la piel y el tejido subdérmico de forma mínimamente invasiva.",
@@ -35,7 +35,7 @@ const treatmentEntries = [
     imagePosition: "center center"
   },
   {
-    category: "Tecnologías y aparatología facial y corporal",
+    category: "Aparatología facial y corporal",
     title: "FaceTite",
     excerpt:
       "FaceTite es un tratamiento mínimamente invasivo de InMode que utiliza radiofrecuencia asistida (RFAL) para trabajar en el plano subdérmico. La energía se aplica de manera controlada para favorecer la contracción de los tejidos y remodelar determinadas áreas del rostro.",
@@ -47,7 +47,7 @@ const treatmentEntries = [
     imagePosition: "center center"
   },
   {
-    category: "Tecnologías y aparatología facial y corporal",
+    category: "Aparatología facial y corporal",
     title: "Exilis Ultra 360",
     excerpt:
       "Exilis Ultra 360 es una tecnología no invasiva que combina de manera simultánea radiofrecuencia monopolar y ultrasonido, con control de temperatura y energía, para trabajar rostro y cuerpo.",
@@ -59,7 +59,7 @@ const treatmentEntries = [
     imagePosition: "center center"
   },
   {
-    category: "Tecnologías y aparatología facial y corporal",
+    category: "Aparatología facial y corporal",
     title: "Harmony AFT 540–950",
     excerpt:
       "Harmony AFT 540–950 es una tecnología lumínica de amplio espectro, una evolución de la luz pulsada intensa, diseñada para tratar diferentes alteraciones de color y textura.",
@@ -71,7 +71,7 @@ const treatmentEntries = [
     imagePosition: "center center"
   },
   {
-    category: "Tecnologías y aparatología facial y corporal",
+    category: "Aparatología facial y corporal",
     title: "Harmony Nd:YAG Q-Switched",
     excerpt:
       "Es un láser Q-Switched Nd:YAG que trabaja sobre el pigmento con alta precisión y mínima agresión del tejido circundante.",
@@ -83,7 +83,7 @@ const treatmentEntries = [
     imagePosition: "center center"
   },
   {
-    category: "Tecnologías y aparatología facial y corporal",
+    category: "Aparatología facial y corporal",
     title: "Harmony Pixel Erbium",
     excerpt:
       "Harmony Pixel Erbium es un láser fraccionado de erbio orientado al resurfacing cutáneo y la renovación de la superficie de la piel.",
