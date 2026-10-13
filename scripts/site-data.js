@@ -410,6 +410,19 @@ export function getRelatedTreatments(slug, limit = 3) {
   return treatments.filter((item) => item.slug !== slug).slice(0, limit);
 }
 
+const inModeTreatmentSlugs = ["morpheus-8", "facetite", "accutite", "bodytite"];
+
+export function getOtherInModeTreatments(slug) {
+  if (!inModeTreatmentSlugs.includes(slug)) {
+    return [];
+  }
+
+  return inModeTreatmentSlugs
+    .filter((itemSlug) => itemSlug !== slug)
+    .map(getTreatmentBySlug)
+    .filter(Boolean);
+}
+
 export function getRelatedArticles(slug, limit = 3) {
   return articles.filter((item) => item.slug !== slug).slice(0, limit);
 }

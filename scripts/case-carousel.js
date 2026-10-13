@@ -47,6 +47,9 @@ const treatmentCases = {
     "Caso facetite rojas1.png",
     "Caso facetite rojas2.png"
   ]),
+  // Agregar los nombres de las imágenes cuando haya casos disponibles.
+  "accutite": makeCases("accutite", "AccuTite", []),
+  "bodytite": makeCases("bodytite", "BodyTite", []),
   "harmony-aft-540-950": makeCases("harmony-aft-540-950", "Harmony AFT 540–950", [
     "Caso harmony aft salto.png",
     "caso harmony aft.png",
@@ -520,8 +523,13 @@ function mountTreatment(app) {
   if (!carousel) return true;
 
   const scientificSupport = findScientificSupportSection(app);
+  const inModeTechnologies = detailSection.querySelector(":scope > .inmode-technologies");
   if (scientificSupport?.parentNode === detailSection) {
     scientificSupport.classList.add("spada-scientific-support");
+  }
+  if (inModeTechnologies) {
+    detailSection.insertBefore(carousel, inModeTechnologies);
+  } else if (scientificSupport?.parentNode === detailSection) {
     detailSection.insertBefore(carousel, scientificSupport);
   } else {
     detailIntro.insertAdjacentElement("afterend", carousel);
@@ -529,7 +537,7 @@ function mountTreatment(app) {
 
   detailIntro.classList.add("spada-detail-intro-ordered");
   Array.from(detailSection.children).forEach((child) => {
-    if (child !== detailIntro && child !== carousel && child !== scientificSupport) {
+    if (child !== detailIntro && child !== carousel && child !== scientificSupport && child !== inModeTechnologies) {
       child.classList.add("spada-detail-after-cases");
     }
   });

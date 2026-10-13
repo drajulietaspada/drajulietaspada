@@ -522,6 +522,26 @@ export function renderScientificSupport(articles = []) {
   `;
 }
 
+export function renderInModeTechnologies(treatments = []) {
+  if (!treatments.length) {
+    return "";
+  }
+
+  return `
+    <section class="shell inmode-technologies" aria-labelledby="inmode-technologies-title">
+      <div class="section-heading" data-animate>
+        <div>
+          <h2 id="inmode-technologies-title">Otras tecnologías InMode</h2>
+          <p class="section-heading__description">Según el área anatómica, la profundidad y el objetivo del tratamiento, podemos trabajar con diferentes tecnologías InMode. Conocé las demás opciones y qué permite abordar cada una.</p>
+        </div>
+      </div>
+      <div class="treatment-catalog inmode-technologies__catalog">
+        ${treatments.map((item) => renderTreatmentListCard(item)).join("")}
+      </div>
+    </section>
+  `;
+}
+
 export function renderDetailHero(item, type = "treatment") {
   const buttonLabel = type === "article" ? "Hablar por WhatsApp" : "Agendar una consulta";
   const intent = type === "article" ? "contacto.html?intent=commercial" : `contacto.html?intent=booking&topic=${item.slug}`;
@@ -582,7 +602,7 @@ export function renderDetailHero(item, type = "treatment") {
                     <span class="detail-hero__section-index" aria-hidden="true">${String(index + 1).padStart(2, "0")}</span>
                     <div class="detail-hero__section-content">
                       <h2 class="detail-hero__section-title detail-hero__section-title--treatment">${escapeHtml(section.title)}</h2>
-                      <p class="detail-hero__section-text detail-hero__section-text--treatment">${escapeHtml(section.text)}</p>
+                      ${section.text.split(/\n{2,}/).map((paragraph) => `<p class="detail-hero__section-text detail-hero__section-text--treatment">${escapeHtml(paragraph)}</p>`).join("")}
                     </div>
                   </section>
                 `

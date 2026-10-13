@@ -48,6 +48,30 @@ const treatmentEntries = [
   },
   {
     category: "Aparatología facial y corporal",
+    title: "AccuTite",
+    excerpt:
+      "AccuTite (InMode) es la versión de mayor precisión de la tecnología RFAL. Utiliza una microcánula más fina que permite trabajar por debajo de la piel en áreas pequeñas y delicadas, donde se requiere un control milimétrico de la energía.",
+    details: [
+      "Es ideal para tratar pequeños depósitos de grasa localizada que no justifican un abordaje de mayor escala. Reduce el tejido graso de forma selectiva y estimula la contracción de los tejidos, afinando el contorno con gran precisión.\n\nAl igual que el resto de la plataforma, cuenta con control de temperatura en tiempo real, interna y externa, con corte automático al alcanzar el valor programado, lo que aporta seguridad en zonas de piel más fina.",
+      "Pacientes con adiposidad localizada en áreas pequeñas: en el rostro, carrillos y contorno mandibular; en el cuerpo, rodillas, zona del corpiño, axilas y área periumbilical. También como complemento de detalle tras otros tratamientos de contorno."
+    ],
+    image: "images/accutite.png",
+    imagePosition: "center center"
+  },
+  {
+    category: "Aparatología facial y corporal",
+    title: "BodyTite",
+    excerpt:
+      "BodyTite (InMode) es un procedimiento mínimamente invasivo de lipólisis asistida por radiofrecuencia (RFAL) diseñado para el cuerpo. Mediante una cánula que trabaja por debajo de la piel y un electrodo externo en superficie, la energía actúa de forma controlada sobre la grasa localizada y los tejidos profundos.",
+    details: [
+      "Es ideal para tratar la adiposidad localizada corporal. La radiofrecuencia reduce el tejido graso y, simultáneamente, estimula la contracción de la piel y los tejidos, algo que la liposucción convencional por sí sola no logra. Puede combinarse con aspiración en el mismo procedimiento para potenciar la reducción de volumen.\n\nEl control de temperatura en tiempo real, interna y externa, con corte automático al alcanzar el valor programado, permite una distribución uniforme de la energía y reduce el riesgo de quemaduras e irregularidades.",
+      "Pacientes con grasa localizada en abdomen, flancos, brazos, muslos, espalda o rodillas, con o sin flacidez leve a moderada, que buscan reducir volumen y mejorar la firmeza de la piel con un abordaje menos invasivo que la cirugía."
+    ],
+    image: "images/bodytite.png",
+    imagePosition: "center center"
+  },
+  {
+    category: "Aparatología facial y corporal",
     title: "Exilis Ultra 360",
     excerpt:
       "Exilis Ultra 360 es una tecnología no invasiva que combina de manera simultánea radiofrecuencia monopolar y ultrasonido, con control de temperatura y energía, para trabajar rostro y cuerpo.",

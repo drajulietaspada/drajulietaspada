@@ -341,12 +341,16 @@
   order: 2;
 }
 
-.section--detail-treatment > .spada-scientific-support {
+.section--detail-treatment > .spada-detail-intro-ordered ~ .inmode-technologies {
   order: 3;
 }
 
-.section--detail-treatment > .spada-detail-after-cases {
+.section--detail-treatment > .spada-scientific-support {
   order: 4;
+}
+
+.section--detail-treatment > .spada-detail-after-cases {
+  order: 5;
 }
 
 @media (max-width: 719px) {

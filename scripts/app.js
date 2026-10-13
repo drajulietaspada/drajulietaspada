@@ -5,6 +5,7 @@ import {
   getArticleBySlug,
   getHomeBeforeAfterGalleryItems,
   getFeaturedTreatments,
+  getOtherInModeTreatments,
   getRelatedArticles,
   getRelatedTreatments,
   getTreatmentBySlug,
@@ -29,6 +30,7 @@ import {
   renderFooter,
   renderHeader,
   renderHomeBeforeAfterCarousel,
+  renderInModeTechnologies,
   renderShowcaseCard,
   renderTreatmentListCard,
   setupRevealAnimations
@@ -336,6 +338,7 @@ function renderTreatmentDetailPage() {
         ${renderDetailHero(treatment, "treatment")}
       </div>
       ${renderBeforeAfterCarousel(treatment)}
+      ${renderInModeTechnologies(getOtherInModeTreatments(treatment.slug))}
       ${renderScientificSupport(treatment.articles || [])}
       <div class="section-heading" data-animate>
         <div>
