@@ -55,7 +55,7 @@ const treatmentEntries = [
       "Es ideal para tratar pequeños depósitos de grasa localizada que no justifican un abordaje de mayor escala. Reduce el tejido graso de forma selectiva y estimula la contracción de los tejidos, afinando el contorno con gran precisión.\n\nAl igual que el resto de la plataforma, cuenta con control de temperatura en tiempo real, interna y externa, con corte automático al alcanzar el valor programado, lo que aporta seguridad en zonas de piel más fina.",
       "Pacientes con adiposidad localizada en áreas pequeñas: en el rostro, carrillos y contorno mandibular; en el cuerpo, rodillas, zona del corpiño, axilas y área periumbilical. También como complemento de detalle tras otros tratamientos de contorno."
     ],
-    image: "images/accutite.png",
+    image: "images/accutite2.png",
     imagePosition: "center center"
   },
   {
