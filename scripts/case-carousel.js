@@ -32,7 +32,8 @@ const treatmentCases = {
     "caso up orteu.png",
     "caso up orteu (2).png",
     "caso up orteu (3).png",
-    "caso up rodillas spada.png"
+    "caso up rodillas spada.png",
+    "caso ultherapy pajon .png"
   ]),
   "morpheus-8": makeCases("morpheus-8", "Morpheus 8", [
     "Caso Morpheus 8.png",
@@ -41,7 +42,8 @@ const treatmentCases = {
     "caso morpheus churin.png",
     "caso morpheus orteu.png",
     "caso morpheus orteu (2).png",
-    "caso morpheus orteu (3).png"
+    "caso morpheus orteu (3).png",
+    "caso morpheus pajon.png"
   ]),
   "facetite": makeCases("facetite", "FaceTite", [
     "Caso facetite rojas1.png",
@@ -89,7 +91,8 @@ const treatmentCases = {
     "caso hueco supra.png",
     "caso hueco supra alegre.png",
     "caso hueco supra jenaro.png",
-    "caso hueco supra perez.png"
+    "caso hueco supra perez.png",
+    "caso hueco supraorbitario carla tessier.png"
   ]),
   "glow-blend": makeCases("glow-blend", "Glow blend", [
     "caso glow blend.png",
@@ -146,6 +149,57 @@ const treatmentCases = {
   "relleno-de-frente": makeCases("relleno-de-frente", "Relleno de frente", [
     "Caso relleno frente casal.png",
     "Caso relleno frente dominguez.png"
+  ]),
+  "calvestox": makeCases("calvestox", "Calvestox", [
+    "Caso calvestox1.png",
+    "Caso calvestox1 (2).png"
+  ]),
+  "sonrisa-gingival": makeCases("sonrisa-gingival", "Sonrisa gingival", [
+    "Caso gingival estruga.png",
+    "caso gingival gimenez.png",
+    "Caso gingival ortigoza.png",
+    "caso gingival spada.png"
+  ]),
+  "bandas-platismales": makeCases("bandas-platismales", "Bandas platismales", [
+    "caso bandas platismales fontana.png",
+    "caso bandas platismales machain.png",
+    "caso bandas platismales spada.png",
+    "caso bandas platismales spada2.png",
+    "caso bandas platismales.png"
+  ]),
+  "harmony-nd-yag-q-switched": makeCases("harmony-nd-yag-q-switched", "Harmony Nd:YAG Q-Switched", [
+    "caso q switched abdala.png",
+    "caso q switched churin.png",
+    "caso q switched 1.png"
+  ]),
+  "fosa-temporal": makeCases("fosa-temporal", "Fosa temporal", [
+    "caso fosa temporal (2).png",
+    "caso fosa temporal (3).png",
+    "caso fosa temporal 1.png",
+    "caso fosa temporal bianccioti.png",
+    "caso fosa temporal lovrincevich.png",
+    "caso fosa temporal.png"
+  ]),
+  "revive": makeCases("revive", "Revive", [
+    "caso hasan revive.png",
+    "Caso revive salto.png"
+  ]),
+  "menton": makeCases("menton", "Mentón", [
+    "caso menton (2).png",
+    "caso menton colangiuli.png",
+    "caso menton karina figuera.png",
+    "caso menton rodriguez magali.png",
+    "caso menton.png"
+  ]),
+  "blend-de-contorno-mandibular": makeCases("blend-de-contorno-mandibular", "Blend de contorno mandibular", [
+    "caso blend de contorno.png",
+    "Caso contorno mandibular castillo.png",
+    "Caso contorno mandibular Figuera.png",
+    "Caso contorno mandibular Luizzi.png",
+    "Caso contorno mandibular martin.png"
+  ]),
+  "exilis-ultra-360": makeCases("exilis-ultra-360", "Exilis Ultra 360", [
+    "caso exilis costantino.png"
   ])
 };
 
