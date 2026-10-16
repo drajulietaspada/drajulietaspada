@@ -1199,6 +1199,8 @@ export function bindContactForms() {
         preferredDays.length ? `Dias de preferencia: ${preferredDays.join(", ")}` : ""
       ].filter(Boolean);
 
+      trackContactFormConversion(topic || concernText);
+
       window.open(buildWhatsAppLink(destination, lines.join("\n")), "_blank", "noopener,noreferrer");
     });
   });
@@ -1527,6 +1529,26 @@ export function bindTreatmentCaseCarousels() {
 
     syncSlides();
   });
+}
+
+// Conversión de Google Ads "Formulario de contacto".
+// Pegar acá el valor 'send_to' que da Google Ads (formato: AW-18451036425/XXXXXXXXXXX).
+const CONTACT_FORM_CONVERSION_SEND_TO = "AW-18451036425/PEGAR_ETIQUETA";
+
+function trackContactFormConversion(label) {
+  if (typeof window.gtag !== "function") {
+    return;
+  }
+
+  try {
+    window.gtag("event", "generate_lead", { form_name: "contacto", lead_topic: label || "" });
+
+    if (!CONTACT_FORM_CONVERSION_SEND_TO.includes("PEGAR_ETIQUETA")) {
+      window.gtag("event", "conversion", { send_to: CONTACT_FORM_CONVERSION_SEND_TO });
+    }
+  } catch (error) {
+    // La medición nunca debe impedir que se abra WhatsApp.
+  }
 }
 
 export function buildWhatsAppLink(number, text) {
