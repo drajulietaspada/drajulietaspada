@@ -1533,7 +1533,7 @@ export function bindTreatmentCaseCarousels() {
 
 // Conversión de Google Ads "Formulario de contacto".
 // Pegar acá el valor 'send_to' que da Google Ads (formato: AW-18451036425/XXXXXXXXXXX).
-const CONTACT_FORM_CONVERSION_SEND_TO = "AW-18451036425/PEGAR_ETIQUETA";
+const CONTACT_FORM_CONVERSION_SEND_TO = "AW-18451036425/GrgMCKnxk58dEInykd5E";
 
 function trackContactFormConversion(label) {
   if (typeof window.gtag !== "function") {
